@@ -1,0 +1,46 @@
+You are a senior full-stack development architect. Design and implement a cutting-edge, HIPAA-compliant hospital website as a Progressive Web App (PWA) with the following requirements:
+
+1. **User Experience & UI/UX**  
+   - Clean, responsive design using a modern component library (e.g. Material UI or Tailwind CSS).  
+   - WCAG 2.1 AA accessibility: keyboard navigation, ARIA roles, high-contrast mode.  
+   - Multi-language support (English, Hindi, Urdu) with on-the-fly locale switching.  
+   - SEO optimization: semantic HTML, metadata, sitemap, server-side rendering for public pages.
+
+2. **Core Patient-Facing Features**  
+   - **Appointment Booking**: real-time scheduler showing doctor availability, automated reminders (SMS/email).  
+   - **Patient Portal**: secure login (OAuth2 + JWT), view/edit personal profile, past visits, lab results, prescriptions.  
+   - **Telemedicine**: WebRTC-based video consultations with virtual waiting room, waiting-time indicator.  
+   - **Interactive Facility Map**: floor-by-floor SVG map with department markers and “How to get there” guidance.  
+   - **AI Chatbot Triage**: symptom checker using predefined decision tree + fallback to human chat.
+
+3. **Doctor & Staff Dashboard**  
+   - **EMR Integration**: FHIR/HL7-compliant API to read/write patient records, lab orders, imaging results.  
+   - **Schedule & Availability**: drag-and-drop calendar, automated patient check-in list.  
+   - **Teleconsult Queue**: live queue management with video call launch buttons.  
+   - **Analytics**: real-time KPIs (occupancy rates, average wait times, no-show rates) plus exportable CSV/PDF reports.
+
+4. **Administrative & Billing Module**  
+   - **Billing & Payments**: support for online payments (cards, UPI), insurance claim integration, invoicing.  
+   - **Inventory Management**: track pharmacy stock, medical supplies, auto-reorder thresholds.  
+   - **Role-Based Access Control**: granular permissions for doctors, nurses, admin, lab techs, finance.
+
+5. **Technical Architecture**  
+   - **Front End**: React 18 with Next.js (SSR/ISR) or SvelteKit, PWA manifest + service workers.  
+   - **Back End**: Node.js/Express or NestJS with GraphQL API; containerize services with Docker & Kubernetes.  
+   - **Database**: PostgreSQL for relational data + MongoDB for document-based logs; Redis for caching & session store.  
+   - **Security**: HTTPS/TLS everywhere, at-rest AES-256 encryption for PHI, OWASP Top 10 protections, regular pen-testing.  
+   - **CI/CD**: GitHub Actions or GitLab CI pipelines for linting, testing, building & staging deployments.  
+   - **Monitoring & Logging**: Prometheus + Grafana dashboards, ELK stack for centralized logs, automated alerts.
+
+6. **Testing & QA**  
+   - Unit, integration, and end-to-end tests (Jest + Cypress).  
+   - Performance audits (Lighthouse score ≥ 90).  
+   - Accessibility scans (axe-core).  
+   - Security scans (Snyk, OWASP ZAP).
+
+7. **DevOps & Maintenance**  
+   - Infrastructure as Code (Terraform) for cloud provisioning (AWS/GCP/Azure).  
+   - Blue-green or canary deployments to minimize downtime.  
+   - Automated backups and disaster-recovery plan.
+
+Deliver a detailed functional specification document describing each module, wireframes for major pages, database schema designs, API contracts, and a project plan with milestones and estimated timelines. End of prompt.

@@ -42,15 +42,25 @@ login_manager.login_view = 'auth.login'
 login_manager.login_message = 'Please log in to access this page.'
 
 # Initialize Babel for internationalization
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
 babel = Babel(app)
 
-@babel.localeselector
+# Set the locale selection function without using decorators
 def get_locale():
     # If a user is logged in, use their preferred language
     if 'language' in session:
         return session['language']
     # Otherwise use the best match from the Accept-Language header
     return request.accept_languages.best_match(['en', 'hi', 'ur'])
+
+# Use a direct approach of setting the locale selector function
+app.jinja_env.globals['get_locale'] = get_locale
+
+# For each request, set the language
+@app.before_request
+def before_request():
+    g.locale = get_locale()
 
 # Import and register blueprints
 with app.app_context():

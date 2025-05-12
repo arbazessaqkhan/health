@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block meta_description %}Appointment confirmation for Lifeline Hospital. Check your appointment details and important information before your visit.{% endblock %}
+
+{% block content %}
+<!-- Confirmation Header -->
+<section class="bg-success text-white py-5">
+  <div class="container text-center">
+    <div class="mb-4">
+      <i class="fas fa-check-circle fa-5x"></i>
+    </div>
+    <h1>{{ _('Appointment Confirmed!') }}</h1>
+    <p class="lead">{{ _('Your appointment request has been successfully submitted') }}</p>
+  </div>
+</section>
+
+<!-- Confirmation Details -->
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4">{{ _('Thank You for Choosing Lifeline Hospital') }}</h2>
+            
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i>
+              {% if current_user.is_authenticated %}
+                {{ _('A confirmation email with your appointment details has been sent to your registered email address.') }}
+              {% else %}
+                {{ _('Please check your email for appointment details and confirmation.') }}
+              {% endif %}
+            </div>
+            
+            <div class="text-center mb-4 py-3">
+              <i class="fas fa-calendar-check fa-3x text-success mb-3"></i>
+              <h3 class="h5">{{ _('What Happens Next?') }}</h3>
+              <p>{{ _('Our staff will review your appointment request and contact you within 24 hours to confirm your booking.') }}</p>
+            </div>
+            
+            <div class="border-top border-bottom py-4 my-4">
+              <h3 class="h5 mb-3">{{ _('Important Reminders') }}:</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-clock me-2 text-primary"></i> 
+                  {{ _('Please arrive 15 minutes before your scheduled appointment time') }}
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-id-card me-2 text-primary"></i> 
+                  {{ _('Bring your photo ID and insurance information (if applicable)') }}
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-pills me-2 text-primary"></i> 
+                  {{ _('Bring a list of current medications') }}
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-file-medical me-2 text-primary"></i> 
+                  {{ _('Bring any relevant medical records or test results') }}
+                </li>
+                <li>
+                  <i class="fas fa-phone-alt me-2 text-primary"></i> 
+                  {{ _('If you need to reschedule, please call us at least 24 hours in advance') }}
+                </li>
+              </ul>
+            </div>
+            
+            <div class="text-center mt-4">
+              {% if current_user.is_authenticated %}
+                <a href="{{ url_for('patients.portal') }}" class="btn btn-primary">
+                  <i class="fas fa-columns me-2"></i> {{ _('Go to Patient Portal') }}
+                </a>
+              {% else %}
+                <a href="{{ url_for('auth.register') }}" class="btn btn-primary">
+                  <i class="fas fa-user-plus me-2"></i> {{ _('Create Patient Account') }}
+                </a>
+              {% endif %}
+              
+              <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary ms-2">
+                <i class="fas fa-home me-2"></i> {{ _('Back to Home') }}
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hospital Contact Card -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="h5 card-title">{{ _('Questions or Concerns?') }}</h3>
+            <p>{{ _('Contact our appointment desk for assistance:') }}</p>
+            <div class="d-flex align-items-center mt-3">
+              <i class="fas fa-phone-alt fa-2x text-primary me-3"></i>
+              <div>
+                <p class="mb-0">{{ _('Appointment Helpline') }}</p>
+                <p class="mb-0 h5 text-primary">+1-555-LIFELINE</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+              <i class="fas fa-envelope fa-2x text-primary me-3"></i>
+              <div>
+                <p class="mb-0">{{ _('Email') }}</p>
+                <p class="mb-0 h5 text-primary">appointments@lifelinehospital.example</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Services -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center mb-4">{{ _('Explore Our Services') }}</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h4 class="h5 card-title">{{ _('Health Packages') }}</h4>
+            <p class="card-text">{{ _('Comprehensive health check-ups and preventive care packages for all age groups.') }}</p>
+            <a href="#" class="btn btn-outline-primary mt-2">{{ _('Learn More') }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-laptop-medical"></i>
+            </div>
+            <h4 class="h5 card-title">{{ _('Telemedicine') }}</h4>
+            <p class="card-text">{{ _('Virtual consultations with our specialists from the comfort of your home.') }}</p>
+            <a href="#" class="btn btn-outline-primary mt-2">{{ _('Learn More') }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h4 class="h5 card-title">{{ _('Diagnostic Services') }}</h4>
+            <p class="card-text">{{ _('Advanced laboratory tests and imaging services with quick turnaround times.') }}</p>
+            <a href="#" class="btn btn-outline-primary mt-2">{{ _('Learn More') }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

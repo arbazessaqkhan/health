@@ -1,0 +1,393 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- FAQ Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ _('Frequently Asked Questions') }}</h1>
+                <p class="lead">{{ _('Find answers to commonly asked questions about Lifeline Hospital services, policies, and procedures') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- FAQ Search -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="input-group">
+                <span class="input-group-text bg-primary text-white">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" id="faq-search" class="form-control form-control-lg" placeholder="{{ _('Search for questions...') }}">
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Categories -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <div class="btn-group flex-wrap" role="group" aria-label="{{ _('FAQ Categories') }}">
+                <button type="button" class="btn btn-outline-primary active m-1" data-category="all">{{ _('All') }}</button>
+                <button type="button" class="btn btn-outline-primary m-1" data-category="appointments">{{ _('Appointments') }}</button>
+                <button type="button" class="btn btn-outline-primary m-1" data-category="billing">{{ _('Billing & Insurance') }}</button>
+                <button type="button" class="btn btn-outline-primary m-1" data-category="services">{{ _('Services') }}</button>
+                <button type="button" class="btn btn-outline-primary m-1" data-category="policies">{{ _('Hospital Policies') }}</button>
+                <button type="button" class="btn btn-outline-primary m-1" data-category="patient">{{ _('Patient Portal') }}</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Accordion -->
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="accordion" id="faqAccordion">
+                {% if faqs %}
+                    {% for faq in faqs %}
+                        <div class="accordion-item faq-item" data-category="{{ faq.category|lower }}">
+                            <h2 class="accordion-header" id="faqHeading{{ faq.id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse{{ faq.id }}" aria-expanded="false" aria-controls="faqCollapse{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="faqCollapse{{ faq.id }}" class="accordion-collapse collapse" aria-labelledby="faqHeading{{ faq.id }}" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Default FAQs if none in database -->
+                    <!-- Appointments FAQs -->
+                    <div class="accordion-item faq-item" data-category="appointments">
+                        <h2 class="accordion-header" id="faqHeading1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                                {{ _('How do I schedule an appointment?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('You can schedule an appointment in several ways:') }}</p>
+                                <ul>
+                                    <li>{{ _('Through our website by visiting the Appointments page') }}</li>
+                                    <li>{{ _('By calling our appointment line at +91 11 2345 6780') }}</li>
+                                    <li>{{ _('In person at our reception desk during regular hours') }}</li>
+                                    <li>{{ _('Through the Patient Portal if you have an existing account') }}</li>
+                                </ul>
+                                <p>{{ _('For urgent medical needs, please visit our Emergency Department which is open 24/7.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item faq-item" data-category="appointments">
+                        <h2 class="accordion-header" id="faqHeading2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                {{ _('What should I bring to my appointment?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('Please bring the following items to your appointment:') }}</p>
+                                <ul>
+                                    <li>{{ _('Valid government-issued photo ID') }}</li>
+                                    <li>{{ _('Insurance card (if applicable)') }}</li>
+                                    <li>{{ _('List of current medications you are taking') }}</li>
+                                    <li>{{ _('Medical records, test results, or imaging studies related to your condition') }}</li>
+                                    <li>{{ _('Referral letter from your primary physician (if required)') }}</li>
+                                    <li>{{ _('Payment method for any co-pays or fees') }}</li>
+                                </ul>
+                                <p>{{ _('If you have any specific requirements for your appointment, please contact us in advance so we can accommodate your needs.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Billing FAQs -->
+                    <div class="accordion-item faq-item" data-category="billing">
+                        <h2 class="accordion-header" id="faqHeading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                {{ _('What insurance plans do you accept?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('Lifeline Hospital accepts most major insurance plans, including:') }}</p>
+                                <ul>
+                                    <li>{{ _('National Health Insurance') }}</li>
+                                    <li>{{ _('United Healthcare') }}</li>
+                                    <li>{{ _('Aetna') }}</li>
+                                    <li>{{ _('Blue Cross Blue Shield') }}</li>
+                                    <li>{{ _('Cigna') }}</li>
+                                    <li>{{ _('Medicare') }}</li>
+                                    <li>{{ _('Medicaid') }}</li>
+                                </ul>
+                                <p>{{ _('Please contact our billing department at +91 11 2345 7001 or billing@lifelinehospital.org to verify if we accept your specific insurance plan.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item faq-item" data-category="billing">
+                        <h2 class="accordion-header" id="faqHeading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                {{ _('How can I pay my hospital bill?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('We offer several payment options for your convenience:') }}</p>
+                                <ul>
+                                    <li>{{ _('Online through the Patient Portal') }}</li>
+                                    <li>{{ _('In person at our billing office') }}</li>
+                                    <li>{{ _('By phone at +91 11 2345 7001') }}</li>
+                                    <li>{{ _('By mail to our billing address') }}</li>
+                                </ul>
+                                <p>{{ _('We accept cash, checks, credit/debit cards, UPI payments, and bank transfers. If you need assistance with payment arrangements or have questions about your bill, please contact our billing department.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services FAQs -->
+                    <div class="accordion-item faq-item" data-category="services">
+                        <h2 class="accordion-header" id="faqHeading5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                {{ _('What specialized services does Lifeline Hospital offer?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('Lifeline Hospital offers a comprehensive range of medical services, including:') }}</p>
+                                <ul>
+                                    <li>{{ _('Cardiology and Cardiac Surgery') }}</li>
+                                    <li>{{ _('Neurology and Neurosurgery') }}</li>
+                                    <li>{{ _('Orthopedics and Sports Medicine') }}</li>
+                                    <li>{{ _('Oncology and Cancer Treatments') }}</li>
+                                    <li>{{ _('Pediatrics and Neonatal Care') }}</li>
+                                    <li>{{ _('Obstetrics and Gynecology') }}</li>
+                                    <li>{{ _('Emergency Medicine') }}</li>
+                                    <li>{{ _('Diagnostic Imaging and Laboratory Services') }}</li>
+                                    <li>{{ _('Rehabilitation Services') }}</li>
+                                </ul>
+                                <p>{{ _('Visit our Services page for more detailed information about our specialized departments.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hospital Policies FAQs -->
+                    <div class="accordion-item faq-item" data-category="policies">
+                        <h2 class="accordion-header" id="faqHeading6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                                {{ _('What are the visiting hours?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('General visiting hours are:') }}</p>
+                                <ul>
+                                    <li>{{ _('Morning: 11:00 AM - 1:00 PM') }}</li>
+                                    <li>{{ _('Evening: 4:00 PM - 7:00 PM') }}</li>
+                                </ul>
+                                <p>{{ _('Special units (ICU, CCU, NICU) have restricted visiting hours and policies:') }}</p>
+                                <ul>
+                                    <li>{{ _('ICU/CCU: 12:00 PM - 12:30 PM and 5:00 PM - 5:30 PM') }}</li>
+                                    <li>{{ _('NICU: Only parents allowed, specific hours determined by the unit') }}</li>
+                                </ul>
+                                <p>{{ _('Please note that visiting policies may change based on the hospital\'s current situation or patient needs. We recommend confirming visiting hours by calling the main reception before your visit.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item faq-item" data-category="policies">
+                        <h2 class="accordion-header" id="faqHeading7">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                                {{ _('How does Lifeline Hospital ensure HIPAA compliance and protect patient privacy?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('At Lifeline Hospital, we take patient privacy and HIPAA compliance very seriously. We implement the following measures:') }}</p>
+                                <ul>
+                                    <li>{{ _('Strict access controls to patient information systems') }}</li>
+                                    <li>{{ _('Regular staff training on privacy policies and procedures') }}</li>
+                                    <li>{{ _('Secure electronic medical records with encryption') }}</li>
+                                    <li>{{ _('Privacy screens on all computer monitors displaying patient information') }}</li>
+                                    <li>{{ _('Secure messaging systems for patient communications') }}</li>
+                                    <li>{{ _('Regular security audits and vulnerability assessments') }}</li>
+                                </ul>
+                                <p>{{ _('Patients receive our Notice of Privacy Practices during their first visit, which outlines how medical information may be used and disclosed, and how patients can access their information. For more details, please see our Privacy Policy page.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patient Portal FAQs -->
+                    <div class="accordion-item faq-item" data-category="patient">
+                        <h2 class="accordion-header" id="faqHeading8">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                                {{ _('How do I access the Patient Portal?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('To access the Patient Portal:') }}</p>
+                                <ol>
+                                    <li>{{ _('Click on the "Sign In" button at the top of our website') }}</li>
+                                    <li>{{ _('Enter your username and password') }}</li>
+                                    <li>{{ _('If you\'re a new user, click on "Register Now" to create an account') }}</li>
+                                </ol>
+                                <p>{{ _('If you\'ve forgotten your password, use the "Forgot your password?" link on the login page to reset it. For technical assistance with the Patient Portal, please contact our support team at support@lifelinehospital.org or call +91 11 2345 6789.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item faq-item" data-category="patient">
+                        <h2 class="accordion-header" id="faqHeading9">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
+                                {{ _('What features are available in the Patient Portal?') }}
+                            </button>
+                        </h2>
+                        <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>{{ _('The Patient Portal provides several convenient features:') }}</p>
+                                <ul>
+                                    <li>{{ _('View, schedule, or cancel appointments') }}</li>
+                                    <li>{{ _('Access test results and medical records') }}</li>
+                                    <li>{{ _('View and download prescriptions') }}</li>
+                                    <li>{{ _('Update personal information and insurance details') }}</li>
+                                    <li>{{ _('Communicate with your healthcare providers') }}</li>
+                                    <li>{{ _('View billing statements and make payments') }}</li>
+                                    <li>{{ _('Access educational resources for your medical conditions') }}</li>
+                                </ul>
+                                <p>{{ _('We continue to enhance the Portal with new features to improve your healthcare experience.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- No Results Message -->
+            <div id="no-faq-results" class="text-center p-4 d-none">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <p>{{ _('No questions found matching your search. Please try different keywords or browse all categories.') }}</p>
+                <button type="button" class="btn btn-outline-primary" data-category="all">{{ _('View All Questions') }}</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Still Have Questions -->
+    <div class="row mt-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card bg-light">
+                <div class="card-body text-center p-5">
+                    <h2 class="h4 mb-3">{{ _('Still Have Questions?') }}</h2>
+                    <p class="mb-4">{{ _('Our team is here to help. Contact us through any of these channels.') }}</p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="d-grid">
+                                <a href="{{ url_for('contact.index') }}" class="btn btn-primary">
+                                    <i class="fas fa-envelope me-2"></i>{{ _('Contact Us') }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="d-grid">
+                                <a href="tel:+911123456789" class="btn btn-outline-primary">
+                                    <i class="fas fa-phone me-2"></i>{{ _('Call Support') }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fas fa-comments me-2"></i>{{ _('Live Chat') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Search functionality
+    const searchInput = document.getElementById('faq-search');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const noResultsMessage = document.getElementById('no-faq-results');
+    
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        let resultsFound = false;
+        
+        faqItems.forEach(item => {
+            const questionText = item.querySelector('.accordion-button').textContent.toLowerCase();
+            const answerText = item.querySelector('.accordion-body').textContent.toLowerCase();
+            
+            if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                item.style.display = '';
+                resultsFound = true;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        if (resultsFound) {
+            noResultsMessage.classList.add('d-none');
+        } else {
+            noResultsMessage.classList.remove('d-none');
+        }
+    });
+    
+    // Category filter buttons
+    const categoryButtons = document.querySelectorAll('[data-category]');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.dataset.category;
+            
+            // Update active button
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter FAQ items
+            if (category === 'all') {
+                faqItems.forEach(item => item.style.display = '');
+                noResultsMessage.classList.add('d-none');
+            } else {
+                let resultsFound = false;
+                
+                faqItems.forEach(item => {
+                    if (item.dataset.category === category) {
+                        item.style.display = '';
+                        resultsFound = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                if (resultsFound) {
+                    noResultsMessage.classList.add('d-none');
+                } else {
+                    noResultsMessage.classList.remove('d-none');
+                }
+            }
+            
+            // Clear search
+            searchInput.value = '';
+        });
+    });
+    
+    // Handle the click on the View All Questions button
+    document.querySelector('#no-faq-results button').addEventListener('click', function() {
+        categoryButtons.forEach(btn => {
+            if (btn.dataset.category === 'all') {
+                btn.click();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

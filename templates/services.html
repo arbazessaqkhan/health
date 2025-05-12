@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Services Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ _('Our Medical Services') }}</h1>
+                <p class="lead">{{ _('Lifeline Hospital offers a wide range of specialized medical services to provide comprehensive care to our patients') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- Department Tabs Navigation -->
+    <ul class="nav nav-pills mb-4 justify-content-center" id="servicesTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-services-tab" data-bs-toggle="pill" data-bs-target="#all-services" type="button" role="tab" aria-controls="all-services" aria-selected="true">
+                {{ _('All Services') }}
+            </button>
+        </li>
+        
+        {% for department, services in services_by_dept.items() %}
+            {% if department != 'Other Services' and services %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="dept-{{ department.id }}-tab" data-bs-toggle="pill" data-bs-target="#dept-{{ department.id }}" type="button" role="tab" aria-controls="dept-{{ department.id }}" aria-selected="false">
+                        {{ department.name }}
+                    </button>
+                </li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if services_by_dept.get('Other Services') %}
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="other-services-tab" data-bs-toggle="pill" data-bs-target="#other-services" type="button" role="tab" aria-controls="other-services" aria-selected="false">
+                    {{ _('Other Services') }}
+                </button>
+            </li>
+        {% endif %}
+    </ul>
+    
+    <!-- Department Tabs Content -->
+    <div class="tab-content" id="servicesTabsContent">
+        <!-- All Services Tab -->
+        <div class="tab-pane fade show active" id="all-services" role="tabpanel" aria-labelledby="all-services-tab">
+            <div class="row">
+                {% for service in all_services %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100 fade-in">
+                            <div class="card-body">
+                                <div class="service-icon mb-3">
+                                    {% if service.name == 'Cardiology' %}
+                                        <i class="fas fa-heartbeat"></i>
+                                    {% elif service.name == 'Neurology' %}
+                                        <i class="fas fa-brain"></i>
+                                    {% elif service.name == 'Orthopedics' %}
+                                        <i class="fas fa-bone"></i>
+                                    {% elif service.name == 'Pediatrics' %}
+                                        <i class="fas fa-baby"></i>
+                                    {% elif service.name == 'Oncology' %}
+                                        <i class="fas fa-ribbon"></i>
+                                    {% elif service.name == 'Dermatology' %}
+                                        <i class="fas fa-allergies"></i>
+                                    {% elif service.name == 'Ophthalmology' %}
+                                        <i class="fas fa-eye"></i>
+                                    {% elif service.name == 'ENT' %}
+                                        <i class="fas fa-ear"></i>
+                                    {% elif service.name == 'Gynecology' %}
+                                        <i class="fas fa-venus"></i>
+                                    {% elif service.name == 'Urology' %}
+                                        <i class="fas fa-kidneys"></i>
+                                    {% elif service.name == 'Dentistry' %}
+                                        <i class="fas fa-tooth"></i>
+                                    {% elif service.name == 'Psychiatry' %}
+                                        <i class="fas fa-brain"></i>
+                                    {% elif service.name == 'Physiotherapy' %}
+                                        <i class="fas fa-walking"></i>
+                                    {% elif service.name == 'Diagnostic Imaging' %}
+                                        <i class="fas fa-x-ray"></i>
+                                    {% elif service.name == 'Laboratory Services' %}
+                                        <i class="fas fa-flask"></i>
+                                    {% elif service.name == 'Emergency Medicine' %}
+                                        <i class="fas fa-ambulance"></i>
+                                    {% else %}
+                                        <i class="fas fa-stethoscope"></i>
+                                    {% endif %}
+                                </div>
+                                <h3 class="card-title h5">{{ service.name }}</h3>
+                                <p class="card-text">{{ service.description or _('Specialized medical service provided by our experienced healthcare professionals.') }}</p>
+                                <a href="#service-{{ service.id }}" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#serviceModal-{{ service.id }}">
+                                    {{ _('Learn More') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Modal -->
+                    <div class="modal fade" id="serviceModal-{{ service.id }}" tabindex="-1" aria-labelledby="serviceModalLabel-{{ service.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="serviceModalLabel-{{ service.id }}">{{ service.name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="service-icon mb-3 text-center">
+                                        {% if service.name == 'Cardiology' %}
+                                            <i class="fas fa-heartbeat fa-3x"></i>
+                                        {% elif service.name == 'Neurology' %}
+                                            <i class="fas fa-brain fa-3x"></i>
+                                        {% elif service.name == 'Orthopedics' %}
+                                            <i class="fas fa-bone fa-3x"></i>
+                                        {% elif service.name == 'Pediatrics' %}
+                                            <i class="fas fa-baby fa-3x"></i>
+                                        {% elif service.name == 'Oncology' %}
+                                            <i class="fas fa-ribbon fa-3x"></i>
+                                        {% elif service.name == 'Dermatology' %}
+                                            <i class="fas fa-allergies fa-3x"></i>
+                                        {% elif service.name == 'Ophthalmology' %}
+                                            <i class="fas fa-eye fa-3x"></i>
+                                        {% elif service.name == 'ENT' %}
+                                            <i class="fas fa-ear fa-3x"></i>
+                                        {% elif service.name == 'Gynecology' %}
+                                            <i class="fas fa-venus fa-3x"></i>
+                                        {% elif service.name == 'Urology' %}
+                                            <i class="fas fa-kidneys fa-3x"></i>
+                                        {% elif service.name == 'Dentistry' %}
+                                            <i class="fas fa-tooth fa-3x"></i>
+                                        {% elif service.name == 'Psychiatry' %}
+                                            <i class="fas fa-brain fa-3x"></i>
+                                        {% elif service.name == 'Physiotherapy' %}
+                                            <i class="fas fa-walking fa-3x"></i>
+                                        {% elif service.name == 'Diagnostic Imaging' %}
+                                            <i class="fas fa-x-ray fa-3x"></i>
+                                        {% elif service.name == 'Laboratory Services' %}
+                                            <i class="fas fa-flask fa-3x"></i>
+                                        {% elif service.name == 'Emergency Medicine' %}
+                                            <i class="fas fa-ambulance fa-3x"></i>
+                                        {% else %}
+                                            <i class="fas fa-stethoscope fa-3x"></i>
+                                        {% endif %}
+                                    </div>
+                                    <p>{{ service.description or _('Specialized medical service provided by our experienced healthcare professionals.') }}</p>
+                                    
+                                    <h6>{{ _('Key Treatments & Procedures:') }}</h6>
+                                    <ul class="mb-4">
+                                        {% if service.name == 'Cardiology' %}
+                                            <li>{{ _('Comprehensive cardiac consultations and check-ups') }}</li>
+                                            <li>{{ _('ECG, Echocardiography, and Stress tests') }}</li>
+                                            <li>{{ _('Cardiac catheterization and angioplasty') }}</li>
+                                            <li>{{ _('Pacemaker implantation and management') }}</li>
+                                            <li>{{ _('Heart failure management') }}</li>
+                                        {% elif service.name == 'Neurology' %}
+                                            <li>{{ _('Neurological exams and consultations') }}</li>
+                                            <li>{{ _('EEG and EMG studies') }}</li>
+                                            <li>{{ _('Treatment for epilepsy, migraines, and headaches') }}</li>
+                                            <li>{{ _('Stroke prevention and management') }}</li>
+                                            <li>{{ _('Management of neurodegenerative disorders') }}</li>
+                                        {% elif service.name == 'Orthopedics' %}
+                                            <li>{{ _('Joint replacement surgeries') }}</li>
+                                            <li>{{ _('Fracture care and management') }}</li>
+                                            <li>{{ _('Sports injury treatments') }}</li>
+                                            <li>{{ _('Spinal surgeries and treatments') }}</li>
+                                            <li>{{ _('Arthroscopic procedures') }}</li>
+                                        {% else %}
+                                            <li>{{ _('Comprehensive consultations and examinations') }}</li>
+                                            <li>{{ _('Advanced diagnostic procedures') }}</li>
+                                            <li>{{ _('Cutting-edge treatment options') }}</li>
+                                            <li>{{ _('Preventive care and management') }}</li>
+                                            <li>{{ _('Specialized therapeutic interventions') }}</li>
+                                        {% endif %}
+                                    </ul>
+                                    
+                                    <h6>{{ _('Our Expert Team:') }}</h6>
+                                    <p>{{ _('Our team of specialized healthcare professionals are committed to providing personalized care using the latest medical advancements. Our doctors have extensive experience and training from leading medical institutions.') }}</p>
+                                    
+                                    <h6>{{ _('Facilities:') }}</h6>
+                                    <p>{{ _('Our department is equipped with state-of-the-art technology and modern facilities to ensure accurate diagnosis and effective treatment.') }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url_for('doctors.index', specialty=service.name) }}" class="btn btn-outline-primary">
+                                        <i class="fas fa-user-md me-2"></i>{{ _('Find Specialists') }}
+                                    </a>
+                                    <a href="{{ url_for('appointments.book') }}" class="btn btn-primary">
+                                        <i class="fas fa-calendar-check me-2"></i>{{ _('Book Appointment') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Department Specific Tabs -->
+        {% for department, services in services_by_dept.items() %}
+            {% if department != 'Other Services' and services %}
+                <div class="tab-pane fade" id="dept-{{ department.id }}" role="tabpanel" aria-labelledby="dept-{{ department.id }}-tab">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h2 class="h4">{{ department.name }}</h2>
+                                    <p>{{ department.description or _('Our specialized department providing expert medical care in this field.') }}</p>
+                                    <p><strong>{{ _('Location:') }}</strong> {{ _('Floor') }} {{ department.floor or '1' }}{% if department.building %}, {{ department.building }}{% endif %}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        {% for service in services %}
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="service-icon mb-3">
+                                            <i class="fas fa-stethoscope"></i>
+                                        </div>
+                                        <h3 class="card-title h5">{{ service.name }}</h3>
+                                        <p class="card-text">{{ service.description or _('Specialized medical service provided by our experienced healthcare professionals.') }}</p>
+                                        <a href="#service-{{ service.id }}" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#serviceModal-{{ service.id }}">
+                                            {{ _('Learn More') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Other Services Tab -->
+        {% if services_by_dept.get('Other Services') %}
+            <div class="tab-pane fade" id="other-services" role="tabpanel" aria-labelledby="other-services-tab">
+                <div class="row">
+                    {% for service in services_by_dept.get('Other Services', []) %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="service-icon mb-3">
+                                        <i class="fas fa-stethoscope"></i>
+                                    </div>
+                                    <h3 class="card-title h5">{{ service.name }}</h3>
+                                    <p class="card-text">{{ service.description or _('Specialized medical service provided by our experienced healthcare professionals.') }}</p>
+                                    <a href="#service-{{ service.id }}" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#serviceModal-{{ service.id }}">
+                                        {{ _('Learn More') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Preventive Healthcare Section -->
+    <div class="card mt-5 mb-5">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2 class="h4">{{ _('Preventive Healthcare') }}</h2>
+                    <p>{{ _('Regular health check-ups can detect potential health issues before they become a problem. Our comprehensive health check-up packages are designed to provide a thorough assessment of your overall health.') }}</p>
+                    <ul class="mb-4">
+                        <li>{{ _('Basic Health Check-up') }}</li>
+                        <li>{{ _('Comprehensive Health Check-up') }}</li>
+                        <li>{{ _('Executive Health Check-up') }}</li>
+                        <li>{{ _('Cardiac Health Check-up') }}</li>
+                        <li>{{ _('Women\'s Health Check-up') }}</li>
+                        <li>{{ _('Men\'s Health Check-up') }}</li>
+                        <li>{{ _('Senior Citizen Health Check-up') }}</li>
+                    </ul>
+                    <a href="{{ url_for('appointments.book') }}" class="btn btn-primary">
+                        <i class="fas fa-calendar-check me-2"></i>{{ _('Book a Health Check-up') }}
+                    </a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="service-icon mb-2">
+                        <i class="fas fa-heartbeat fa-5x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Insurance & Payment Info -->
+    <div class="card bg-light mb-5">
+        <div class="card-body p-4">
+            <h2 class="h4 mb-3">{{ _('Insurance & Payment Information') }}</h2>
+            <p>{{ _('Lifeline Hospital accepts most major insurance plans. Please contact our billing department for specific information about your insurance coverage.') }}</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5>{{ _('Accepted Insurance Providers') }}</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('National Health Insurance') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('United Healthcare') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Aetna') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Blue Cross Blue Shield') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Cigna') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Medicare') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Medicaid') }}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>{{ _('Payment Options') }}</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-credit-card me-2 text-primary"></i>{{ _('Credit/Debit Cards') }}</li>
+                        <li><i class="fas fa-money-bill-wave me-2 text-primary"></i>{{ _('Cash') }}</li>
+                        <li><i class="fas fa-check me-2 text-primary"></i>{{ _('Checks') }}</li>
+                        <li><i class="fas fa-mobile-alt me-2 text-primary"></i>{{ _('UPI Payments') }}</li>
+                        <li><i class="fas fa-university me-2 text-primary"></i>{{ _('Bank Transfer') }}</li>
+                        <li><i class="fas fa-clipboard-list me-2 text-primary"></i>{{ _('Payment Plans Available') }}</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{{ url_for('contact.index') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-phone me-2"></i>{{ _('Contact Billing Department') }}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Call to Action -->
+    <div class="text-center py-4 bg-primary text-white rounded">
+        <h2 class="h3">{{ _('Need to schedule an appointment?') }}</h2>
+        <p class="lead">{{ _('Our team of specialists is ready to provide you with the best medical care') }}</p>
+        <a href="{{ url_for('appointments.book') }}" class="btn btn-light btn-lg">
+            <i class="fas fa-calendar-check me-2"></i>{{ _('Book an Appointment') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

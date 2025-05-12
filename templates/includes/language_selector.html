@@ -1,0 +1,33 @@
+<li class="nav-item dropdown language-selector">
+  <a class="nav-link dropdown-toggle" href="#" id="languageSelector" role="button" 
+     data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-globe me-1"></i>
+    {% if session.get('lang') == 'hi' %}
+      हिन्दी
+    {% elif session.get('lang') == 'ur' %}
+      اردو
+    {% else %}
+      English
+    {% endif %}
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageSelector">
+    <li>
+      <a class="dropdown-item {% if session.get('lang', 'en') == 'en' %}active{% endif %}" 
+         href="{{ url_for('main.change_language', lang_code='en') }}">
+        English
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item {% if session.get('lang') == 'hi' %}active{% endif %}" 
+         href="{{ url_for('main.change_language', lang_code='hi') }}">
+        हिन्दी (Hindi)
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item {% if session.get('lang') == 'ur' %}active{% endif %}" 
+         href="{{ url_for('main.change_language', lang_code='ur') }}">
+        اردو (Urdu)
+      </a>
+    </li>
+  </ul>
+</li>

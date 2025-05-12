@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="h3 mb-0">{{ _('Book an Appointment') }}</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {{ form.csrf_token }}
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            {{ _('All fields marked with an asterisk (*) are required.') }}
+                        </div>
+                        
+                        {% if not current_user.is_authenticated %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                {{ _('You need to be logged in to book an appointment.') }}
+                                <a href="{{ url_for('auth.login', next=url_for('appointments.book')) }}" class="alert-link">{{ _('Sign in here') }}</a>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.doctor_id.id }}" class="form-label">
+                                {{ form.doctor_id.label.text }} *
+                            </label>
+                            {{ form.doctor_id(class="form-select", required=true) }}
+                            {% if form.doctor_id.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.doctor_id.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.date.id }}" class="form-label">
+                                    {{ form.date.label.text }} *
+                                </label>
+                                {{ form.date(class="form-control datepicker", required=true, type="date") }}
+                                {% if form.date.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.date.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">
+                                    {{ _('Please select a date from today onwards.') }}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="{{ form.time.id }}" class="form-label">
+                                    {{ form.time.label.text }} *
+                                </label>
+                                {{ form.time(class="form-select", required=true) }}
+                                {% if form.time.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.time.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">
+                                    {{ _('Select your preferred time slot.') }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.appointment_type.id }}" class="form-label">
+                                {{ form.appointment_type.label.text }} *
+                            </label>
+                            {{ form.appointment_type(class="form-select", required=true) }}
+                            {% if form.appointment_type.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.appointment_type.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="{{ form.reason.id }}" class="form-label">
+                                {{ form.reason.label.text }} *
+                            </label>
+                            {{ form.reason(class="form-control", rows=4, required=true) }}
+                            {% if form.reason.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.reason.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">
+                                {{ _('Please briefly describe your symptoms or reason for the visit.') }}
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card-footer bg-light">
+                    <div class="small">
+                        <p><i class="fas fa-shield-alt me-2 text-primary"></i> {{ _('Your health information is protected by HIPAA privacy regulations.') }}</p>
+                        <p class="mb-0"><i class="fas fa-info-circle me-2 text-primary"></i> {{ _('If you need to cancel or reschedule, please do so at least 24 hours before your appointment.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Information -->
+            <div class="mt-4">
+                <div class="accordion" id="appointmentFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                {{ _('What should I bring to my appointment?') }}
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#appointmentFAQ">
+                            <div class="accordion-body">
+                                <ul class="mb-0">
+                                    <li>{{ _('Valid ID proof and address proof') }}</li>
+                                    <li>{{ _('Insurance card (if applicable)') }}</li>
+                                    <li>{{ _('List of current medications') }}</li>
+                                    <li>{{ _('Medical records or previous test results related to your condition') }}</li>
+                                    <li>{{ _('Any referral letter from your primary doctor') }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                {{ _('How can I prepare for my appointment?') }}
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#appointmentFAQ">
+                            <div class="accordion-body">
+                                <ol class="mb-0">
+                                    <li>{{ _('Make a list of your symptoms and when they started') }}</li>
+                                    <li>{{ _('Note any questions you want to ask the doctor') }}</li>
+                                    <li>{{ _('Arrive 15 minutes before your appointment time') }}</li>
+                                    <li>{{ _('For certain appointments, you may need to fast or follow specific instructions that will be provided to you') }}</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                {{ _('What happens during a telemedicine appointment?') }}
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#appointmentFAQ">
+                            <div class="accordion-body">
+                                <p>{{ _('For telemedicine appointments:') }}</p>
+                                <ul class="mb-0">
+                                    <li>{{ _('You\'ll receive a secure link via email before your appointment') }}</li>
+                                    <li>{{ _('Ensure you have a stable internet connection and a device with a camera and microphone') }}</li>
+                                    <li>{{ _('Find a quiet, private space for your consultation') }}</li>
+                                    <li>{{ _('The doctor will connect with you at your scheduled time') }}</li>
+                                    <li>{{ _('If you need prescriptions, they will be sent electronically to your preferred pharmacy') }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set minimum date as today for date picker
+    const dateInput = document.getElementById('{{ form.date.id }}');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+});
+</script>
+{% endblock %}

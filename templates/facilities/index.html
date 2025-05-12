@@ -1,0 +1,359 @@
+{% extends 'base.html' %}
+
+{% block meta_description %}Explore the comprehensive facilities and departments at Lifeline Hospital. State-of-the-art medical equipment, specialized care units, and advanced diagnostic centers.{% endblock %}
+
+{% block content %}
+<!-- Facilities Header -->
+<section class="bg-primary text-white py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h1>{{ _('Our Facilities & Departments') }}</h1>
+        <p class="lead">{{ _('State-of-the-art medical infrastructure and specialized care units') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Facilities Overview -->
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8">
+        <h2>{{ _('Welcome to Lifeline Hospital') }}</h2>
+        <p class="lead">{{ _('Comprehensive healthcare facilities designed for patient comfort and advanced medical care') }}</p>
+        <p>{{ _('Our hospital is equipped with the latest medical technology and staffed by highly trained healthcare professionals to provide exceptional care across various medical specialties. From preventive care to complex treatments, we offer comprehensive healthcare services in a healing environment.') }}</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="h5 card-title">{{ _('Quick Stats') }}</h3>
+            <ul class="list-unstyled">
+              <li class="d-flex justify-content-between py-2 border-bottom">
+                <span>{{ _('Number of Beds') }}</span>
+                <span class="fw-bold">500+</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom">
+                <span>{{ _('Operation Theaters') }}</span>
+                <span class="fw-bold">20</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom">
+                <span>{{ _('ICU Beds') }}</span>
+                <span class="fw-bold">100</span>
+              </li>
+              <li class="d-flex justify-content-between py-2 border-bottom">
+                <span>{{ _('Medical Departments') }}</span>
+                <span class="fw-bold">{{ departments|length }}</span>
+              </li>
+              <li class="d-flex justify-content-between py-2">
+                <span>{{ _('Hospital Area') }}</span>
+                <span class="fw-bold">150,000 sq ft</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Highlight Features -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-procedures fa-2x"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Emergency Care') }}</h3>
+            <p class="card-text">{{ _('24/7 emergency services with dedicated trauma care team and rapid response protocols.') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-microscope fa-2x"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Advanced Diagnostics') }}</h3>
+            <p class="card-text">{{ _('Cutting-edge imaging and laboratory services for accurate and timely diagnosis.') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-hand-holding-medical fa-2x"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Patient-Centered Care') }}</h3>
+            <p class="card-text">{{ _('Comfortable rooms with modern amenities and personalized care for enhanced recovery.') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon">
+              <i class="fas fa-clipboard-check fa-2x"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Quality Assurance') }}</h3>
+            <p class="card-text">{{ _('Strict quality control measures and international healthcare standards for optimal outcomes.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Departments List -->
+    <h2 class="mb-4">{{ _('Our Specialized Departments') }}</h2>
+    <div class="row g-4">
+      {% if departments %}
+        {% for department in departments %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            {% if department.image_url %}
+            <img src="{{ department.image_url }}" class="card-img-top" alt="{{ department.name }}" height="200">
+            {% else %}
+            <div class="bg-light text-center p-4">
+              <i class="fas fa-hospital-alt fa-4x text-primary"></i>
+            </div>
+            {% endif %}
+            <div class="card-body p-4">
+              <h3 class="h5 card-title">{{ department.name }}</h3>
+              <p class="card-text">{{ department.description[:120] }}{% if department.description|length > 120 %}...{% endif %}</p>
+              <div class="mt-3">
+                <a href="{{ url_for('facilities.department', department_id=department.id) }}" class="btn btn-primary">
+                  {{ _('View Details') }}
+                </a>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <small class="text-muted">
+                <i class="fas fa-map-marker-alt me-1"></i> {{ _('Location') }}: {{ _('Floor') }} {{ department.floor }}, {{ department.building }}
+              </small>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12">
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i> {{ _('Department information is being updated. Please check back soon.') }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Hospital Map Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2>{{ _('Hospital Map & Navigation') }}</h2>
+        <p class="lead">{{ _('Find your way around our facilities with ease') }}</p>
+        <p>{{ _('Our hospital is designed for easy navigation with clear signage and dedicated information desks. Use the interactive map to locate departments, amenities, and services.') }}</p>
+        
+        <div class="accordion mt-4" id="facilityMapAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="floorOneHeading">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#floorOneCollapse" aria-expanded="true" aria-controls="floorOneCollapse">
+                {{ _('Ground Floor') }}
+              </button>
+            </h2>
+            <div id="floorOneCollapse" class="accordion-collapse collapse show" aria-labelledby="floorOneHeading" data-bs-parent="#facilityMapAccordion">
+              <div class="accordion-body">
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Main Reception & Information Desk') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Emergency Department') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Outpatient Pharmacy') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Cafeteria & Waiting Areas') }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="floorTwoHeading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#floorTwoCollapse" aria-expanded="false" aria-controls="floorTwoCollapse">
+                {{ _('First Floor') }}
+              </button>
+            </h2>
+            <div id="floorTwoCollapse" class="accordion-collapse collapse" aria-labelledby="floorTwoHeading" data-bs-parent="#facilityMapAccordion">
+              <div class="accordion-body">
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Outpatient Departments') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Diagnostic Imaging Center') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Laboratory Services') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Blood Collection Center') }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="floorThreeHeading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#floorThreeCollapse" aria-expanded="false" aria-controls="floorThreeCollapse">
+                {{ _('Second Floor') }}
+              </button>
+            </h2>
+            <div id="floorThreeCollapse" class="accordion-collapse collapse" aria-labelledby="floorThreeHeading" data-bs-parent="#facilityMapAccordion">
+              <div class="accordion-body">
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Surgical Departments') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Pre-operative Area') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Operation Theaters') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Intensive Care Units') }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="floorFourHeading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#floorFourCollapse" aria-expanded="false" aria-controls="floorFourCollapse">
+                {{ _('Third Floor & Above') }}
+              </button>
+            </h2>
+            <div id="floorFourCollapse" class="accordion-collapse collapse" aria-labelledby="floorFourHeading" data-bs-parent="#facilityMapAccordion">
+              <div class="accordion-body">
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Inpatient Wards') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Private Rooms & Suites') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Specialized Care Units') }}</li>
+                  <li><i class="fas fa-arrow-right me-2 text-primary"></i> {{ _('Administrative Offices') }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">{{ _('Interactive Hospital Map') }}</h3>
+            <!-- Interactive Map Placeholder - In real implementation, this would use SVG or a mapping library -->
+            <div id="hospital-map" style="height: 400px; border-radius: 5px;" class="bg-light position-relative">
+              <!-- Will be populated by Leaflet.js -->
+            </div>
+            <div class="mt-3">
+              <p class="small text-muted">{{ _('Use this interactive map to navigate our facilities. Click on different areas to see details.') }}</p>
+              <a href="#" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-download me-1"></i> {{ _('Download PDF Map') }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">{{ _('Hospital Amenities & Services') }}</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Cafeteria') }}</h3>
+            <p class="card-text">{{ _('Nutritious meals and refreshments for patients and visitors.') }}</p>
+            <p class="small text-muted mb-0">{{ _('Location: Ground Floor') }}</p>
+            <p class="small text-muted">{{ _('Hours: 7:00 AM - 9:00 PM') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-shopping-basket"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Convenience Store') }}</h3>
+            <p class="card-text">{{ _('Essentials and personal care items for patients and visitors.') }}</p>
+            <p class="small text-muted mb-0">{{ _('Location: Ground Floor') }}</p>
+            <p class="small text-muted">{{ _('Hours: 8:00 AM - 8:00 PM') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Free Wi-Fi') }}</h3>
+            <p class="card-text">{{ _('Complimentary high-speed internet access throughout the hospital.') }}</p>
+            <p class="small text-muted mb-0">{{ _('Network: Lifeline_Guest') }}</p>
+            <p class="small text-muted">{{ _('Available 24/7') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card text-center h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-parking"></i>
+            </div>
+            <h3 class="h5 card-title">{{ _('Parking Facility') }}</h3>
+            <p class="card-text">{{ _('Secure parking spaces with dedicated areas for patients and visitors.') }}</p>
+            <p class="small text-muted mb-0">{{ _('Location: Underground & Surface') }}</p>
+            <p class="small text-muted">{{ _('Available 24/7') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <h2>{{ _('Need more information about our facilities?') }}</h2>
+        <p class="lead mb-0">{{ _('Our patient services team is available to answer your questions and provide guidance.') }}</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="{{ url_for('main.contact') }}" class="btn btn-light btn-lg">
+          <i class="fas fa-phone-alt me-2"></i> {{ _('Contact Us') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Leaflet map if map container exists
+    const mapContainer = document.getElementById('hospital-map');
+    if (mapContainer) {
+      const map = L.map('hospital-map').setView([40.7128, -74.0060], 16);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      // Add hospital marker
+      L.marker([40.7128, -74.0060]).addTo(map)
+        .bindPopup('<strong>Lifeline Hospital</strong><br>123 Healthcare Drive<br>Medical District')
+        .openPopup();
+        
+      // Add circle to indicate hospital campus
+      L.circle([40.7128, -74.0060], {
+        color: '#0069b4',
+        fillColor: '#0069b4',
+        fillOpacity: 0.2,
+        radius: 150
+      }).addTo(map);
+    }
+  });
+</script>
+{% endblock %}

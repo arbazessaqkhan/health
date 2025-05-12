@@ -1,0 +1,402 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Facilities Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ _('Our Facilities') }}</h1>
+                <p class="lead">{{ _('Explore Lifeline Hospital\'s state-of-the-art facilities and medical infrastructure designed for optimal patient care') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- Overview Section -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <h2>{{ _('World-Class Healthcare Infrastructure') }}</h2>
+            <p>{{ _('Lifeline Hospital is equipped with cutting-edge medical technology and modern facilities spanning over 500,000 square feet. Our hospital is designed to provide a healing environment that combines comfort, safety, and advanced medical care.') }}</p>
+            <p>{{ _('Our facility is fully accessible to patients with disabilities, featuring wheelchair ramps, elevators, and specially designed patient rooms to ensure comfortable care for all.') }}</p>
+            <div class="mt-4">
+                <a href="#facility-map-section" class="btn btn-primary">
+                    <i class="fas fa-map-marker-alt me-2"></i>{{ _('View Hospital Map') }}
+                </a>
+                <a href="{{ url_for('contact.index') }}" class="btn btn-outline-primary ms-2">
+                    <i class="fas fa-info-circle me-2"></i>{{ _('Visit Information') }}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="https://pixabay.com/get/gc9ea576cdc7c9420fe26896e350a8c538f0a154733d72588ddd8b37ce1fde88f672fe9c780703aeefe85066cfc29746a1237b1f69a5bc3718141166e36e885c1_1280.jpg" alt="{{ _('Lifeline Hospital Building') }}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+    
+    <!-- Key Facilities -->
+    <h2 class="text-center mb-4">{{ _('Key Facilities') }}</h2>
+    <div class="row mb-5">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-heartbeat fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Advanced Cardiac Center') }}</h3>
+                    <p class="card-text">{{ _('Our state-of-the-art cardiac center is equipped with the latest technology for comprehensive heart care, including cardiac catheterization labs, electrophysiology studies, and advanced cardiac imaging.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('24/7 Cardiac Emergency Care') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Non-invasive and Invasive Cardiology') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Cardiac Rehabilitation') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-brain fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Neuroscience Institute') }}</h3>
+                    <p class="card-text">{{ _('Our neuroscience institute offers comprehensive care for neurological disorders, featuring advanced neuroimaging, neurointerventional procedures, and specialized treatment for stroke, epilepsy, and movement disorders.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('3T MRI and CT Scanners') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Neuro-Intensive Care Unit') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Neurorehabilitation Center') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-procedures fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Advanced Surgical Suites') }}</h3>
+                    <p class="card-text">{{ _('Our surgical department features 10 modern operating theaters equipped with the latest surgical technology, including robotic surgical systems, hybrid ORs, and minimally invasive surgical capabilities.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Robotic Surgery') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Hybrid Operating Rooms') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Minimally Invasive Surgery') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-x-ray fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Diagnostic Imaging Center') }}</h3>
+                    <p class="card-text">{{ _('Our comprehensive imaging center provides a full spectrum of diagnostic services with advanced equipment for precision imaging and rapid results to guide treatment decisions.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('3T MRI and CT Scanners') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('PET-CT for Cancer Diagnosis') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Digital Mammography') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Ultrasound & Doppler Studies') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-ambulance fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Emergency & Trauma Center') }}</h3>
+                    <p class="card-text">{{ _('Our 24/7 emergency department is equipped to handle all medical emergencies with dedicated trauma bays, resuscitation rooms, and immediate access to advanced diagnostic imaging and surgical facilities.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Level 1 Trauma Center') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('24/7 Emergency Care') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Dedicated Pediatric ER') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Helicopter Landing Pad') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-baby fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title h5 text-center">{{ _('Maternity & Neonatal Care') }}</h3>
+                    <p class="card-text">{{ _('Our maternity wing offers a comfortable, family-centered birthing experience with private labor and delivery suites, alongside a state-of-the-art NICU for specialized care of newborns.') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Private Birthing Suites') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Level III NICU') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Maternal-Fetal Medicine') }}</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ _('Lactation Support Services') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Specialty Centers -->
+    <h2 class="text-center mb-4">{{ _('Specialty Centers of Excellence') }}</h2>
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5">{{ _('Cancer Center') }}</h3>
+                    <p>{{ _('Our comprehensive cancer center provides personalized treatment plans using the latest advances in cancer care, including precision medicine, immunotherapy, and targeted radiation therapy.') }}</p>
+                    <ul>
+                        <li>{{ _('Medical, Surgical & Radiation Oncology') }}</li>
+                        <li>{{ _('Linear Accelerators for Precision Radiation') }}</li>
+                        <li>{{ _('Chemotherapy and Immunotherapy') }}</li>
+                        <li>{{ _('Cancer Support Services') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5">{{ _('Orthopedic & Spine Center') }}</h3>
+                    <p>{{ _('Our orthopedic center specializes in the treatment of bone, joint, and muscle conditions, offering advanced surgical and non-surgical interventions for improved mobility and quality of life.') }}</p>
+                    <ul>
+                        <li>{{ _('Joint Replacement Center') }}</li>
+                        <li>{{ _('Spine Surgery & Interventions') }}</li>
+                        <li>{{ _('Sports Medicine Program') }}</li>
+                        <li>{{ _('Physical Therapy & Rehabilitation') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5">{{ _('Transplant Center') }}</h3>
+                    <p>{{ _('Our transplant center offers comprehensive transplantation services, including pre-transplant evaluation, transplant surgery, and long-term post-transplant care with excellent outcomes.') }}</p>
+                    <ul>
+                        <li>{{ _('Kidney Transplantation') }}</li>
+                        <li>{{ _('Liver Transplantation') }}</li>
+                        <li>{{ _('Bone Marrow Transplantation') }}</li>
+                        <li>{{ _('Pre and Post-Transplant Care') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5">{{ _('Women\'s Health Center') }}</h3>
+                    <p>{{ _('Our women\'s health center provides comprehensive care addressing the unique health needs of women at every stage of life, from adolescence through menopause and beyond.') }}</p>
+                    <ul>
+                        <li>{{ _('Obstetrics & Gynecology') }}</li>
+                        <li>{{ _('Breast Health Center') }}</li>
+                        <li>{{ _('Gynecologic Oncology') }}</li>
+                        <li>{{ _('Menopause & Hormone Therapy') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Patient Amenities -->
+    <h2 class="text-center mb-4">{{ _('Patient Amenities') }}</h2>
+    <div class="row mb-5">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-bed fa-3x text-primary mb-3"></i>
+                    <h3 class="h5">{{ _('Private Patient Rooms') }}</h3>
+                    <p class="card-text small">{{ _('Spacious private rooms with en-suite bathrooms, visitor accommodations, and entertainment systems for a comfortable recovery experience.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                    <h3 class="h5">{{ _('Food & Nutrition Services') }}</h3>
+                    <p class="card-text small">{{ _('Our culinary team provides nutritious, diverse menu options tailored to dietary needs and cultural preferences.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-wifi fa-3x text-primary mb-3"></i>
+                    <h3 class="h5">{{ _('Connectivity') }}</h3>
+                    <p class="card-text small">{{ _('Complimentary high-speed Wi-Fi, charging stations, and telehealth capabilities throughout the hospital.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-praying-hands fa-3x text-primary mb-3"></i>
+                    <h3 class="h5">{{ _('Multi-faith Prayer Room') }}</h3>
+                    <p class="card-text small">{{ _('A peaceful sanctuary for prayer, meditation, and reflection for patients and families of all faiths.') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hospital Map Section -->
+    <section id="facility-map-section" class="mb-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">{{ _('Hospital Map & Navigation') }}</h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="form-group">
+                            <label for="floor-selector" class="form-label">{{ _('Select Floor') }}</label>
+                            <select id="floor-selector" class="form-select">
+                                <option value="G">{{ _('Ground Floor - Main Entrance, ER, Registration') }}</option>
+                                <option value="1">{{ _('First Floor - Outpatient Clinics, Diagnostics') }}</option>
+                                <option value="2">{{ _('Second Floor - Surgery, ICU, Cardiology') }}</option>
+                                <option value="3">{{ _('Third Floor - Maternity, Pediatrics, NICU') }}</option>
+                                <option value="4">{{ _('Fourth Floor - Oncology, Dialysis') }}</option>
+                                <option value="5">{{ _('Fifth Floor - Inpatient Wards') }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h3 class="h6">{{ _('Key Locations') }}</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><i class="fas fa-door-open text-primary me-2"></i>{{ _('Main Entrance') }}</li>
+                                <li class="list-group-item"><i class="fas fa-ambulance text-danger me-2"></i>{{ _('Emergency Department') }}</li>
+                                <li class="list-group-item"><i class="fas fa-info-circle text-info me-2"></i>{{ _('Information Desk') }}</li>
+                                <li class="list-group-item"><i class="fas fa-coffee text-warning me-2"></i>{{ _('Cafeteria') }}</li>
+                                <li class="list-group-item"><i class="fas fa-car text-success me-2"></i>{{ _('Parking Areas') }}</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button id="get-directions-btn" class="btn btn-primary w-100">
+                                <i class="fas fa-directions me-2"></i>{{ _('Get Directions to Hospital') }}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <!-- Hospital Map -->
+                        <div id="facility-map" style="height: 500px; border-radius: 0.25rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Virtual Tour -->
+    <div class="card bg-light mb-5">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-3 mb-lg-0">
+                    <h2 class="h4">{{ _('Take a Virtual Tour') }}</h2>
+                    <p>{{ _('Can\'t visit in person? Explore our facilities through our interactive virtual tour. Get a 360° view of our hospital, from the main entrance to patient rooms and specialized treatment areas.') }}</p>
+                    <p class="mb-0">{{ _('For in-person guided tours, please contact our patient services department to schedule an appointment.') }}</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-vr-cardboard me-2"></i>{{ _('Start Virtual Tour') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Accessibility Features -->
+    <div class="card mb-5">
+        <div class="card-header">
+            <h2 class="h4 mb-0">{{ _('Accessibility Features') }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-wheelchair text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Wheelchair Accessibility') }}</h3>
+                                <p class="small mb-0">{{ _('Ramps, elevators, and wide doorways throughout the facility for easy navigation') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-sign-language text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Interpreter Services') }}</h3>
+                                <p class="small mb-0">{{ _('Sign language interpreters and multilingual staff available') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-braille text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Braille Signage') }}</h3>
+                                <p class="small mb-0">{{ _('Tactile signage and Braille information throughout the hospital') }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-assistive-listening-systems text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Assistive Listening Devices') }}</h3>
+                                <p class="small mb-0">{{ _('Available at all information desks and patient service areas') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-low-vision text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Visual Aids') }}</h3>
+                                <p class="small mb-0">{{ _('High-contrast signage and visual alerts for those with visual impairments') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-user-friends text-primary me-3 fa-2x"></i>
+                            <div>
+                                <h3 class="h6 mb-1">{{ _('Patient Companions') }}</h3>
+                                <p class="small mb-0">{{ _('Assistance personnel available to help patients navigate the hospital') }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact & Visiting Info -->
+    <div class="card bg-primary text-white">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-3 mb-md-0">
+                    <h2 class="h4">{{ _('Need More Information?') }}</h2>
+                    <p class="mb-0">{{ _('Contact our patient services department for detailed information about our facilities, visiting hours, or to schedule a tour of our hospital.') }}</p>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="{{ url_for('contact.index') }}" class="btn btn-light">
+                        <i class="fas fa-envelope me-2"></i>{{ _('Contact Us') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="h4 mb-0">
+                        {% if register %}
+                            {{ _('Create Patient Account') }}
+                        {% else %}
+                            {{ _('Patient Portal Login') }}
+                        {% endif %}
+                    </h1>
+                </div>
+                <div class="card-body">
+                    {% if register %}
+                        <!-- Registration Form -->
+                        <form method="POST" action="{{ url_for('auth.register') }}" class="needs-validation" novalidate>
+                            {{ form.csrf_token }}
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.username.id }}" class="form-label">{{ form.username.label.text }} *</label>
+                                {{ form.username(class="form-control", placeholder=_("Choose a username"), required=true) }}
+                                {% if form.username.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.username.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="{{ form.first_name.id }}" class="form-label">{{ form.first_name.label.text }} *</label>
+                                    {{ form.first_name(class="form-control", placeholder=_("First name"), required=true) }}
+                                    {% if form.first_name.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.first_name.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col">
+                                    <label for="{{ form.last_name.id }}" class="form-label">{{ form.last_name.label.text }} *</label>
+                                    {{ form.last_name(class="form-control", placeholder=_("Last name"), required=true) }}
+                                    {% if form.last_name.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {% for error in form.last_name.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.email.id }}" class="form-label">{{ form.email.label.text }} *</label>
+                                {{ form.email(class="form-control", placeholder=_("Your email address"), required=true) }}
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.phone.id }}" class="form-label">{{ form.phone.label.text }}</label>
+                                {{ form.phone(class="form-control", placeholder=_("Your phone number")) }}
+                                {% if form.phone.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.phone.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.password.id }}" class="form-label">{{ form.password.label.text }} *</label>
+                                {{ form.password(class="form-control", placeholder=_("Create a strong password"), required=true) }}
+                                {% if form.password.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.password.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">
+                                    {{ _('Password must be at least 8 characters long') }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="{{ form.password2.id }}" class="form-label">{{ form.password2.label.text }} *</label>
+                                {{ form.password2(class="form-control", placeholder=_("Repeat your password"), required=true) }}
+                                {% if form.password2.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.password2.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary", value=_("Register")) }}
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-4">
+                            <p>{{ _('Already have an account?') }} <a href="{{ url_for('auth.login') }}">{{ _('Sign In') }}</a></p>
+                        </div>
+                    {% else %}
+                        <!-- Login Form -->
+                        <form method="POST" action="{{ url_for('auth.login') }}" class="needs-validation" novalidate>
+                            {{ form.csrf_token }}
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.email.id }}" class="form-label">{{ form.email.label.text }}</label>
+                                {{ form.email(class="form-control", placeholder=_("Enter your email"), required=true) }}
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.password.id }}" class="form-label">{{ form.password.label.text }}</label>
+                                {{ form.password(class="form-control", placeholder=_("Enter your password"), required=true) }}
+                                {% if form.password.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.password.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mb-4 form-check">
+                                {{ form.remember_me(class="form-check-input") }}
+                                <label class="form-check-label" for="{{ form.remember_me.id }}">
+                                    {{ form.remember_me.label.text }}
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-4">
+                            <p>{{ _('Need an account?') }} <a href="{{ url_for('auth.register') }}">{{ _('Register Now') }}</a></p>
+                            <p class="small mt-3"><a href="#">{{ _('Forgot your password?') }}</a></p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="small text-center">
+                        <i class="fas fa-lock me-2"></i>{{ _('Your information is protected by HIPAA privacy regulations') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

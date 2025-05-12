@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Contact Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ _('Contact Us') }}</h1>
+                <p class="lead">{{ _('Have questions? We\'re here to help you. Reach out to Lifeline Hospital through any of the methods below.') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Contact Information -->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="h4 mb-4">{{ _('Get in Touch') }}</h2>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="h6">{{ _('Address') }}</h3>
+                            <p class="mb-0">123 Healthcare Blvd<br>New Delhi, 110001<br>India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="h6">{{ _('Phone Numbers') }}</h3>
+                            <p class="mb-1">{{ _('Main Reception:') }} <a href="tel:+911123456789">+91 11 2345 6789</a></p>
+                            <p class="mb-1">{{ _('Appointments:') }} <a href="tel:+911123456780">+91 11 2345 6780</a></p>
+                            <p class="mb-0">{{ _('Emergency:') }} <a href="tel:+911198765432" class="text-danger fw-bold">+91 11 9876 5432</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="h6">{{ _('Email') }}</h3>
+                            <p class="mb-1">{{ _('General Inquiries:') }} <a href="mailto:contact@lifelinehospital.org">contact@lifelinehospital.org</a></p>
+                            <p class="mb-1">{{ _('Appointments:') }} <a href="mailto:appointments@lifelinehospital.org">appointments@lifelinehospital.org</a></p>
+                            <p class="mb-0">{{ _('Patient Support:') }} <a href="mailto:support@lifelinehospital.org">support@lifelinehospital.org</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="h6">{{ _('Hours of Operation') }}</h3>
+                            <p class="mb-1">{{ _('Outpatient Departments:') }}<br>{{ _('Monday to Saturday, 8:00 AM - 8:00 PM') }}</p>
+                            <p class="mb-1">{{ _('Emergency Department:') }}<br>{{ _('24 hours, 7 days a week') }}</p>
+                            <p class="mb-0">{{ _('Visiting Hours:') }}<br>{{ _('11:00 AM - 1:00 PM & 4:00 PM - 7:00 PM') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h4 mb-4">{{ _('Send Us a Message') }}</h2>
+                    
+                    <form method="POST" class="needs-validation" novalidate>
+                        {{ form.csrf_token }}
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label for="{{ form.name.id }}" class="form-label">{{ form.name.label.text }} *</label>
+                                {{ form.name(class="form-control", placeholder=_("Your full name"), required=true) }}
+                                {% if form.name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.name.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.email.id }}" class="form-label">{{ form.email.label.text }} *</label>
+                                {{ form.email(class="form-control", placeholder=_("Your email address"), required=true) }}
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label for="{{ form.phone.id }}" class="form-label">{{ form.phone.label.text }}</label>
+                                {{ form.phone(class="form-control", placeholder=_("Your phone number")) }}
+                                {% if form.phone.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.phone.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.subject.id }}" class="form-label">{{ form.subject.label.text }} *</label>
+                                {{ form.subject(class="form-control", placeholder=_("Purpose of your message"), required=true) }}
+                                {% if form.subject.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.subject.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.message.id }}" class="form-label">{{ form.message.label.text }} *</label>
+                            {{ form.message(class="form-control", rows=5, placeholder=_("Please provide details about your inquiry"), required=true) }}
+                            {% if form.message.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.message.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Hospital Map -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">{{ _('Find Us') }}</h2>
+                    <div id="facility-map" style="height: 400px; border-radius: 0.25rem;"></div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                        <button id="get-directions-btn" class="btn btn-outline-primary">
+                            <i class="fas fa-directions me-2"></i>{{ _('Get Directions') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Department Contacts -->
+            <div class="card mt-4">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('Department-specific Contacts') }}</h2>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>{{ _('Department') }}</th>
+                                    <th>{{ _('Extension') }}</th>
+                                    <th>{{ _('Email') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ _('Cardiology') }}</td>
+                                    <td>1001</td>
+                                    <td>cardiology@lifelinehospital.org</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _('Neurology') }}</td>
+                                    <td>1002</td>
+                                    <td>neurology@lifelinehospital.org</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _('Orthopedics') }}</td>
+                                    <td>1003</td>
+                                    <td>orthopedics@lifelinehospital.org</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _('Pediatrics') }}</td>
+                                    <td>1004</td>
+                                    <td>pediatrics@lifelinehospital.org</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _('Oncology') }}</td>
+                                    <td>1005</td>
+                                    <td>oncology@lifelinehospital.org</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ _('Billing & Insurance') }}</td>
+                                    <td>2001</td>
+                                    <td>billing@lifelinehospital.org</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Emergency Information -->
+    <div class="card bg-danger text-white mt-5">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center mb-3 mb-md-0">
+                    <i class="fas fa-exclamation-triangle fa-5x"></i>
+                </div>
+                <div class="col-md-7 mb-3 mb-md-0">
+                    <h2 class="h4">{{ _('Emergency Department') }}</h2>
+                    <p class="mb-0">{{ _('Our Emergency Department is open 24/7. If you\'re experiencing a medical emergency, please call our emergency hotline or visit the Emergency Department immediately.') }}</p>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <h3 class="h5">{{ _('Emergency Hotline') }}</h3>
+                    <a href="tel:+911198765432" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>+91 11 9876 5432
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Doctor Directory Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>{{ _('Our Doctors') }}</h1>
+                <p class="lead">{{ _('Meet our team of experienced healthcare professionals dedicated to your wellbeing') }}</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="{{ url_for('appointments.book') }}" class="btn btn-primary">
+                    <i class="fas fa-calendar-check me-2"></i>{{ _('Book an Appointment') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-3 mb-3">
+            <label for="department-filter" class="form-label">{{ _('Filter by Department') }}</label>
+            <select class="form-select" id="department-filter">
+                <option value="">{{ _('All Departments') }}</option>
+                {% for department in departments %}
+                <option value="{{ department.id }}" {% if current_department == department.id|string %}selected{% endif %}>
+                    {{ department.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 mb-3">
+            <label for="specialty-filter" class="form-label">{{ _('Filter by Specialty') }}</label>
+            <select class="form-select" id="specialty-filter">
+                <option value="">{{ _('All Specialties') }}</option>
+                <option value="Cardiology" {% if current_specialty == 'Cardiology' %}selected{% endif %}>{{ _('Cardiology') }}</option>
+                <option value="Neurology" {% if current_specialty == 'Neurology' %}selected{% endif %}>{{ _('Neurology') }}</option>
+                <option value="Orthopedics" {% if current_specialty == 'Orthopedics' %}selected{% endif %}>{{ _('Orthopedics') }}</option>
+                <option value="Pediatrics" {% if current_specialty == 'Pediatrics' %}selected{% endif %}>{{ _('Pediatrics') }}</option>
+                <option value="Oncology" {% if current_specialty == 'Oncology' %}selected{% endif %}>{{ _('Oncology') }}</option>
+                <option value="Gynecology" {% if current_specialty == 'Gynecology' %}selected{% endif %}>{{ _('Gynecology') }}</option>
+                <option value="Dermatology" {% if current_specialty == 'Dermatology' %}selected{% endif %}>{{ _('Dermatology') }}</option>
+                <option value="Psychiatry" {% if current_specialty == 'Psychiatry' %}selected{% endif %}>{{ _('Psychiatry') }}</option>
+            </select>
+        </div>
+        
+        <div class="col-md-12 col-lg-6 mb-3">
+            <label class="form-label">{{ _('Quick Search') }}</label>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ url_for('doctors.index', specialty='Cardiology') }}" class="btn btn-sm btn-outline-primary mb-1">{{ _('Cardiology') }}</a>
+                <a href="{{ url_for('doctors.index', specialty='Neurology') }}" class="btn btn-sm btn-outline-primary mb-1">{{ _('Neurology') }}</a>
+                <a href="{{ url_for('doctors.index', specialty='Orthopedics') }}" class="btn btn-sm btn-outline-primary mb-1">{{ _('Orthopedics') }}</a>
+                <a href="{{ url_for('doctors.index', specialty='Pediatrics') }}" class="btn btn-sm btn-outline-primary mb-1">{{ _('Pediatrics') }}</a>
+                <a href="{{ url_for('doctors.index', specialty='Oncology') }}" class="btn btn-sm btn-outline-primary mb-1">{{ _('Oncology') }}</a>
+                <a href="{{ url_for('doctors.index') }}" class="btn btn-sm btn-outline-secondary mb-1">{{ _('Clear Filters') }}</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Doctor Cards -->
+    <div class="row">
+        {% if doctors %}
+            {% for doctor in doctors %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100 fade-in">
+                        {% if doctor.photo_url %}
+                            <img src="{{ doctor.photo_url }}" class="card-img-top" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
+                        {% else %}
+                            <!-- Default doctor image if no photo available -->
+                            <img src="https://pixabay.com/get/g6e1ebb93703445d2d69b7f8e75df8ff8a382d035a93483515338da835f95dc8d9e80f5b410d4dd341ab0953d3de6482a407e045f6003f9658157c26358283082_1280.jpg" class="card-img-top" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h2 class="card-title h5">Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h2>
+                            <p class="doctor-specialty">{{ doctor.specialty }}</p>
+                            <p class="card-text small">
+                                <i class="fas fa-graduation-cap me-1"></i> {{ doctor.qualifications }}<br>
+                                {% if doctor.years_experience %}
+                                <i class="fas fa-clock me-1"></i> {{ doctor.years_experience }} {{ _('years experience') }}
+                                {% endif %}
+                            </p>
+                            <div class="d-grid gap-2">
+                                <a href="{{ url_for('doctors.profile', doctor_id=doctor.id) }}" class="btn btn-sm btn-outline-primary">
+                                    {{ _('View Profile') }}
+                                </a>
+                                <a href="{{ url_for('appointments.book', doctor_id=doctor.id) }}" class="btn btn-sm btn-primary">
+                                    {{ _('Book Appointment') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    {{ _('No doctors found matching your criteria. Please try different search parameters.') }}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Help Section -->
+    <div class="bg-light p-4 rounded-3 mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h3>{{ _('Not sure which doctor to see?') }}</h3>
+                <p>{{ _('Our team can help you find the right specialist for your medical needs.') }}</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="{{ url_for('contact.index') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-envelope me-2"></i>{{ _('Contact Us') }}
+                </a>
+                <a href="tel:+911123456789" class="btn btn-outline-secondary ms-2">
+                    <i class="fas fa-phone me-2"></i>{{ _('Call Us') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

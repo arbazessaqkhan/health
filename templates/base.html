@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('language', 'en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="{{ _('Lifeline Hospital - Advanced medical care with compassion. Book appointments, find doctors and access our patient portal.') }}">
+    <meta name="theme-color" content="#2c6ba0">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Lifeline Hospital">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icon-192.png') }}">
+    
+    <title>{% if title %}{{ title }} - {% endif %}{{ _('Lifeline Hospital') }}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS (for maps) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    {# Additional head content block for page-specific meta tags, styles, etc. #}
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">{{ _('Skip to main content') }}</a>
+    
+    <!-- Offline Alert -->
+    <div id="offline-alert" class="offline-alert">
+        <div class="container">
+            {{ _('You are currently offline. Some features may be limited.') }}
+        </div>
+    </div>
+    
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home.index') }}">
+                    <i class="fas fa-heartbeat me-2"></i>{{ _('Lifeline Hospital') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('home.index') %}active{% endif %}" href="{{ url_for('home.index') }}">
+                                {{ _('Home') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('doctors.index') %}active{% endif %}" href="{{ url_for('doctors.index') }}">
+                                {{ _('Find a Doctor') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('services.index') %}active{% endif %}" href="{{ url_for('services.index') }}">
+                                {{ _('Services') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('home.facilities') %}active{% endif %}" href="{{ url_for('home.facilities') }}">
+                                {{ _('Facilities') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('appointments.book') %}active{% endif %}" href="{{ url_for('appointments.book') }}">
+                                {{ _('Appointments') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_for('contact.index') %}active{% endif %}" href="{{ url_for('contact.index') }}">
+                                {{ _('Contact') }}
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex align-items-center">
+                        <!-- Language Selector -->
+                        <div class="dropdown language-selector me-3">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-globe me-1"></i>
+                                {% if session.get('language') == 'hi' %}
+                                    हिन्दी
+                                {% elif session.get('language') == 'ur' %}
+                                    اردو
+                                {% else %}
+                                    English
+                                {% endif %}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                {% for code, name in languages.items() %}
+                                <li>
+                                    <a class="dropdown-item {% if session.get('language') == code %}active{% endif %}" href="{{ url_for('home.set_language', language=code) }}">
+                                        {{ name }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        <!-- User Menu -->
+                        {% if current_user.is_authenticated %}
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle me-1"></i> {{ current_user.first_name }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url_for('patients.portal') }}">
+                                            <i class="fas fa-id-card-alt me-2"></i> {{ _('Patient Portal') }}
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                            <i class="fas fa-sign-out-alt me-2"></i> {{ _('Sign Out') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt me-1"></i> {{ _('Sign In') }}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ _('Close') }}"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>{{ _('Lifeline Hospital') }}</h5>
+                    <p>{{ _('Providing advanced medical care with compassion since 1995. Your health is our priority.') }}</p>
+                    <p class="mb-0"><i class="fas fa-phone me-2"></i> +91 11 2345 6789</p>
+                    <p class="mb-0"><i class="fas fa-envelope me-2"></i> contact@lifelinehospital.org</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Healthcare Blvd, New Delhi, India</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    <h5>{{ _('Quick Links') }}</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{{ url_for('home.index') }}">{{ _('Home') }}</a></li>
+                        <li><a href="{{ url_for('home.about') }}">{{ _('About Us') }}</a></li>
+                        <li><a href="{{ url_for('doctors.index') }}">{{ _('Our Doctors') }}</a></li>
+                        <li><a href="{{ url_for('services.index') }}">{{ _('Services') }}</a></li>
+                        <li><a href="{{ url_for('home.facilities') }}">{{ _('Facilities') }}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    <h5>{{ _('Patients') }}</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{{ url_for('appointments.book') }}">{{ _('Book Appointment') }}</a></li>
+                        <li><a href="{{ url_for('patients.portal') }}">{{ _('Patient Portal') }}</a></li>
+                        <li><a href="{{ url_for('home.faq') }}">{{ _('FAQs') }}</a></li>
+                        <li><a href="{{ url_for('home.privacy') }}">{{ _('Privacy Policy') }}</a></li>
+                        <li><a href="{{ url_for('contact.index') }}">{{ _('Contact Us') }}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>{{ _('Connect With Us') }}</h5>
+                    <div class="social-icons mb-3">
+                        <a href="#" class="me-3 fs-4" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-3 fs-4" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3 fs-4" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-3 fs-4" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="fs-4" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    
+                    <h5>{{ _('Emergency') }}</h5>
+                    <p class="text-danger fw-bold mb-1">{{ _('Emergency Hotline:') }} +91 11 9876 5432</p>
+                    <p>{{ _('Available 24/7, 365 days a year') }}</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom text-center">
+                <p class="mb-0">&copy; 2023 {{ _('Lifeline Hospital. All rights reserved.') }}</p>
+                <p class="small">{{ _('This website complies with HIPAA privacy regulations.') }}</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- PWA Install Prompt -->
+    <div id="install-prompt" class="install-prompt">
+        <div>
+            <strong>{{ _('Install Lifeline Hospital App') }}</strong>
+            <p class="mb-0">{{ _('Get quick access to appointments, doctors, and more.') }}</p>
+        </div>
+        <div>
+            <button id="install-button" class="btn btn-primary btn-sm me-2">{{ _('Install') }}</button>
+            <button id="close-prompt" class="btn btn-outline-secondary btn-sm">{{ _('Not Now') }}</button>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- PWA Scripts -->
+    <script src="{{ url_for('static', filename='js/pwa.js') }}"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {# Additional script block for page-specific JS #}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

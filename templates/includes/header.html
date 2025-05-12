@@ -1,0 +1,113 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{{ url_for('main.index') }}" aria-label="{{ _('Lifeline Hospital Home') }}">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="{{ _('Lifeline Hospital') }}" width="180" height="50">
+      </a>
+      
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" 
+              aria-controls="navbarMain" aria-expanded="false" aria-label="{{ _('Toggle navigation') }}">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == url_for('main.index') %}active{% endif %}" 
+               href="{{ url_for('main.index') }}" aria-current="{% if request.path == url_for('main.index') %}page{% endif %}">
+              {{ _('Home') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == url_for('main.about') %}active{% endif %}" 
+               href="{{ url_for('main.about') }}">
+              {{ _('About Us') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if '/doctors' in request.path %}active{% endif %}" 
+               href="{{ url_for('doctors.index') }}">
+              {{ _('Doctors') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if '/facilities' in request.path %}active{% endif %}" 
+               href="{{ url_for('facilities.index') }}">
+              {{ _('Facilities') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if '/appointments' in request.path %}active{% endif %}" 
+               href="{{ url_for('appointments.book') }}">
+              {{ _('Appointments') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == url_for('main.contact') %}active{% endif %}" 
+               href="{{ url_for('main.contact') }}">
+              {{ _('Contact') }}
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Right Side Menu (Patient Portal, Language, Accessibility) -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Patient Portal Access -->
+          {% if current_user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" 
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle me-1"></i> {{ current_user.username }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('patients.portal') }}">
+                    <i class="fas fa-columns me-2"></i> {{ _('Patient Portal') }}
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('appointments.my_appointments') }}">
+                    <i class="fas fa-calendar-check me-2"></i> {{ _('My Appointments') }}
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                    <i class="fas fa-sign-out-alt me-2"></i> {{ _('Logout') }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}">
+                <i class="fas fa-sign-in-alt me-1"></i> {{ _('Patient Login') }}
+              </a>
+            </li>
+          {% endif %}
+          
+          <!-- Language Selector -->
+          {% include 'includes/language_selector.html' %}
+          
+          <!-- Accessibility Toggle -->
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="contrast-toggle" aria-label="{{ _('Toggle high contrast mode') }}">
+              <i class="fas fa-adjust"></i>
+              <span class="d-lg-none ms-2">{{ _('High Contrast') }}</span>
+            </a>
+          </li>
+          
+          <!-- Emergency Contact -->
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="tel:+15555943546">
+              <i class="fas fa-phone-alt me-1"></i> <strong>{{ _('Emergency') }}</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

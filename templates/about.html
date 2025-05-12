@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- About Header -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1>{{ _('About Lifeline Hospital') }}</h1>
+                <p class="lead">{{ _('Delivering exceptional healthcare with compassion since 1995') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- Hospital Overview -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2>{{ _('Our Story') }}</h2>
+            <p>{{ _('Lifeline Hospital was founded in 1995 with a vision to provide world-class healthcare services accessible to all. What began as a small clinic has grown into a state-of-the-art multi-specialty hospital, serving patients from across the country and beyond.') }}</p>
+            <p>{{ _('Our journey has been one of continuous growth, innovation, and unwavering commitment to patient care. Over the years, we have expanded our facilities, adopted cutting-edge medical technologies, and brought together a team of distinguished healthcare professionals to fulfill our mission of delivering excellence in healthcare.') }}</p>
+            <p>{{ _('Today, Lifeline Hospital stands as a symbol of trust, quality, and compassionate care in the healthcare industry. We take pride in our patient-centered approach and our dedication to improving health outcomes for everyone who walks through our doors.') }}</p>
+        </div>
+        <div class="col-lg-6">
+            <img src="https://pixabay.com/get/g27585802320daebf052f41381ea465711e322464c4b8eb57e3e32638e6e929ac0a33d562f74fe7fb2092bfd2c44e04d7c099dea48ed5a01431740d5bf4ae3c2f_1280.jpg" alt="{{ _('Lifeline Hospital Building') }}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+    
+    <!-- Mission, Vision, Values -->
+    <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="display-4 text-primary mb-3">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="card-title">{{ _('Our Mission') }}</h3>
+                    <p class="card-text">{{ _('To enhance the health and well-being of our community by providing accessible, high-quality, and compassionate healthcare services. We are committed to treating every patient with dignity and respect while delivering personalized care that addresses their unique healthcare needs.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="display-4 text-primary mb-3">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="card-title">{{ _('Our Vision') }}</h3>
+                    <p class="card-text">{{ _('To be the leading healthcare provider in the region, recognized for clinical excellence, innovative treatments, and patient-centered care. We aspire to set new standards in healthcare delivery through continuous improvement, research, and embracing technological advancements.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="display-4 text-primary mb-3">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="card-title">{{ _('Our Values') }}</h3>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Compassion in care delivery') }}</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Excellence in medical services') }}</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Integrity in all interactions') }}</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Respect for every individual') }}</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Innovation in healthcare solutions') }}</li>
+                        <li><i class="fas fa-check-circle text-primary me-2"></i>{{ _('Teamwork for better outcomes') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leadership Team -->
+    <h2 class="text-center mb-4">{{ _('Our Leadership Team') }}</h2>
+    <div class="row mb-5">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://pixabay.com/get/g946f1d9a62a40d76d9255f07058c1d104aa315eb269e3bda3eaff6d355ac150c31e29706dccff565e0eccfd15bc69c43c173c362a93ec1dbfcb385d881c6b145_1280.jpg" alt="Dr. Rajiv Kumar" class="img-fluid">
+                    </div>
+                    <h3 class="h5 card-title">{{ _('Dr. Rajiv Kumar') }}</h3>
+                    <p class="text-muted">{{ _('Chief Executive Officer') }}</p>
+                    <p class="card-text small">{{ _('Leading Lifeline Hospital with over 25 years of experience in healthcare management and medical practice.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://pixabay.com/get/gc4e3bae047686e645261454c0addc1b759a4f00b8ab54156716442a18f01c760da387f861d9ce29d9ab3ade0bc1e8a51402e598663430079ac0bd2a8fca738a1_1280.jpg" alt="Dr. Priya Sharma" class="img-fluid">
+                    </div>
+                    <h3 class="h5 card-title">{{ _('Dr. Priya Sharma') }}</h3>
+                    <p class="text-muted">{{ _('Medical Director') }}</p>
+                    <p class="card-text small">{{ _('Overseeing the clinical operations with expertise in quality improvement and patient safety initiatives.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://pixabay.com/get/g6e1ebb93703445d2d69b7f8e75df8ff8a382d035a93483515338da835f95dc8d9e80f5b410d4dd341ab0953d3de6482a407e045f6003f9658157c26358283082_1280.jpg" alt="Mr. Sanjay Mehta" class="img-fluid">
+                    </div>
+                    <h3 class="h5 card-title">{{ _('Mr. Sanjay Mehta') }}</h3>
+                    <p class="text-muted">{{ _('Chief Operations Officer') }}</p>
+                    <p class="card-text small">{{ _('Managing the day-to-day operations of the hospital to ensure efficient and effective service delivery.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="rounded-circle overflow-hidden mx-auto mb-3" style="width: 150px; height: 150px;">
+                        <img src="https://pixabay.com/get/gf960a43af56ad32f66635be242fd4d7e2bd5702c1aae1e6d9bc830fbe495dbfb78825ee1bd3cf788f47c7277362a1d1d5f25c04a7fb8c409ef19caff44816f87_1280.jpg" alt="Dr. Aisha Khan" class="img-fluid">
+                    </div>
+                    <h3 class="h5 card-title">{{ _('Dr. Aisha Khan') }}</h3>
+                    <p class="text-muted">{{ _('Chief of Medical Staff') }}</p>
+                    <p class="card-text small">{{ _('Coordinating between departments and ensuring the highest standards of medical practice across the hospital.') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hospital Facts & Figures -->
+    <div class="bg-light p-5 rounded-3 mb-5">
+        <h2 class="text-center mb-4">{{ _('Facts & Figures') }}</h2>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="display-4 text-primary">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <h3 class="h2 mt-3">500+</h3>
+                <p>{{ _('Hospital Beds') }}</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="display-4 text-primary">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3 class="h2 mt-3">200+</h3>
+                <p>{{ _('Specialist Doctors') }}</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="display-4 text-primary">
+                    <i class="fas fa-procedures"></i>
+                </div>
+                <h3 class="h2 mt-3">50,000+</h3>
+                <p>{{ _('Patients Served Annually') }}</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="display-4 text-primary">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="h2 mt-3">25+</h3>
+                <p>{{ _('Years of Excellence') }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Achievements & Accreditations -->
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0">{{ _('Achievements') }}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-trophy text-warning me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('Excellence in Patient Care Award') }}</h4>
+                                <p class="small mb-0">{{ _('Recognized for outstanding patient satisfaction and care quality, 2022') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-award text-warning me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('Best Multi-Specialty Hospital') }}</h4>
+                                <p class="small mb-0">{{ _('National Healthcare Excellence Awards, 2021') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-star text-warning me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('Top-Ranked Cardiac Care') }}</h4>
+                                <p class="small mb-0">{{ _('Rated among the top 10 cardiac care providers in the country, 2020') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-certificate text-warning me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('Innovation in Healthcare Technology') }}</h4>
+                                <p class="small mb-0">{{ _('Healthcare Technology Innovation Award, 2019') }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0">{{ _('Accreditations') }}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('Joint Commission International (JCI)') }}</h4>
+                                <p class="small mb-0">{{ _('Accredited for meeting international healthcare quality standards') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('National Accreditation Board for Hospitals & Healthcare Providers (NABH)') }}</h4>
+                                <p class="small mb-0">{{ _('Highest national recognition for quality patient care and safety') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('National Accreditation Board for Testing and Calibration Laboratories (NABL)') }}</h4>
+                                <p class="small mb-0">{{ _('For our clinical laboratory services') }}</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3"></i>
+                            <div>
+                                <h4 class="h6 mb-1">{{ _('ISO 9001:2015 Certified') }}</h4>
+                                <p class="small mb-0">{{ _('For quality management systems') }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Community Initiatives -->
+    <h2 class="text-center mb-4">{{ _('Our Community Initiatives') }}</h2>
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5 card-title">{{ _('Health Awareness Campaigns') }}</h3>
+                    <p class="card-text">{{ _('We regularly organize health awareness campaigns, free check-up camps, and educational workshops in schools, colleges, and community centers to promote health literacy and preventive care.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5 card-title">{{ _('Healthcare for Underserved Communities') }}</h3>
+                    <p class="card-text">{{ _('Our mobile healthcare units visit rural and underserved areas to provide basic medical services, consultations, and medications to those with limited access to healthcare facilities.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5 card-title">{{ _('Medical Scholarships') }}</h3>
+                    <p class="card-text">{{ _('We offer scholarships to promising students from economically disadvantaged backgrounds to pursue education in medicine, nursing, and allied health sciences.') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5 card-title">{{ _('Environmental Sustainability') }}</h3>
+                    <p class="card-text">{{ _('As part of our commitment to environmental health, we implement green practices in our operations, promote proper medical waste management, and conduct tree plantation drives.') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Join Our Team -->
+    <div class="card bg-primary text-white text-center mb-5">
+        <div class="card-body p-5">
+            <h2 class="mb-3">{{ _('Join Our Team') }}</h2>
+            <p class="lead mb-4">{{ _('We\'re always looking for dedicated professionals to join our mission of providing exceptional healthcare') }}</p>
+            <a href="#" class="btn btn-light btn-lg">{{ _('View Career Opportunities') }}</a>
+        </div>
+    </div>
+    
+    <!-- Hospital Tour -->
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2>{{ _('Take a Virtual Tour') }}</h2>
+            <p>{{ _('Experience Lifeline Hospital\'s state-of-the-art facilities through our virtual tour. Explore our modern infrastructure, advanced medical equipment, and healing environment designed with patient comfort in mind.') }}</p>
+            <p>{{ _('You can also schedule an in-person tour of our facilities by contacting our patient services department.') }}</p>
+            <a href="#" class="btn btn-primary">
+                <i class="fas fa-vr-cardboard me-2"></i>{{ _('Start Virtual Tour') }}
+            </a>
+            <a href="{{ url_for('contact.index') }}" class="btn btn-outline-primary ms-2">
+                <i class="fas fa-calendar-alt me-2"></i>{{ _('Schedule a Visit') }}
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <img src="https://pixabay.com/get/gf62eeba0564a9984c51cfb63fdc681d188020746f82ac8b62608f0c71697c5d37b0483598956f1b6740c4f348b6fd2e2025c84e3a10470b25cf6bb820e6c8bea_1280.jpg" alt="{{ _('Hospital Interior') }}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+</div>
+{% endblock %}

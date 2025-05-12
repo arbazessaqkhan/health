@@ -1,0 +1,461 @@
+# Urdu translations for Lifeline Hospital.
+# Copyright (C) 2023 Lifeline Hospital
+# This file is distributed under the same license as the Lifeline Hospital project.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-31 12:00+0530\n"
+"PO-Revision-Date: 2023-05-31 12:00+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ur\n"
+"Language-Team: ur <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: app.py:65
+msgid "English"
+msgstr "انگریزی"
+
+#: app.py:66
+msgid "Hindi"
+msgstr "ہندی"
+
+#: app.py:67
+msgid "Urdu"
+msgstr "اردو"
+
+#: views/home.py
+msgid "Welcome to Lifeline Hospital"
+msgstr "لائف لائن ہسپتال میں خوش آمدید"
+
+#: views/home.py
+msgid "About Lifeline Hospital"
+msgstr "لائف لائن ہسپتال کے بارے میں"
+
+#: views/home.py
+msgid "Our Facilities"
+msgstr "ہماری سہولیات"
+
+#: views/home.py
+msgid "Frequently Asked Questions"
+msgstr "اکثر پوچھے گئے سوالات"
+
+#: views/home.py
+msgid "Privacy Policy & HIPAA Compliance"
+msgstr "رازداری پالیسی اور HIPAA کی تعمیل"
+
+#: views/doctors.py
+msgid "Our Doctors"
+msgstr "ہمارے ڈاکٹرز"
+
+#: templates/base.html:7
+msgid "Lifeline Hospital - Advanced medical care with compassion. Book appointments, find doctors and access our patient portal."
+msgstr "لائف لائن ہسپتال - ہمدردی کے ساتھ جدید طبی دیکھ بھال۔ اپائنٹمنٹس بک کریں، ڈاکٹرز تلاش کریں اور ہمارے مریض پورٹل تک رسائی حاصل کریں۔"
+
+#: templates/base.html:42
+msgid "Skip to main content"
+msgstr "مرکزی مواد پر جائیں"
+
+#: templates/base.html:47
+msgid "You are currently offline. Some features may be limited."
+msgstr "آپ فی الحال آف لائن ہیں۔ کچھ خصوصیات محدود ہو سکتی ہیں۔"
+
+#: templates/base.html:57
+msgid "Toggle navigation"
+msgstr "نیویگیشن ٹوگل کریں"
+
+#: templates/base.html:65
+msgid "Home"
+msgstr "ہوم"
+
+#: templates/base.html:70
+msgid "Find a Doctor"
+msgstr "ڈاکٹر تلاش کریں"
+
+#: templates/base.html:75
+msgid "Services"
+msgstr "خدمات"
+
+#: templates/base.html:80
+msgid "Facilities"
+msgstr "سہولیات"
+
+#: templates/base.html:85
+msgid "Appointments"
+msgstr "اپائنٹمنٹس"
+
+#: templates/base.html:90
+msgid "Contact"
+msgstr "رابطہ"
+
+#: templates/base.html:120
+msgid "Patient Portal"
+msgstr "مریض پورٹل"
+
+#: templates/base.html:126
+msgid "Sign Out"
+msgstr "سائن آؤٹ"
+
+#: templates/base.html:134
+msgid "Sign In"
+msgstr "سائن ان"
+
+#: templates/base.html:149
+msgid "Close"
+msgstr "بند کریں"
+
+#: templates/base.html:178
+msgid "Providing advanced medical care with compassion since 1995. Your health is our priority."
+msgstr "1995 سے ہمدردی کے ساتھ جدید طبی دیکھ بھال فراہم کر رہے ہیں۔ آپ کی صحت ہماری ترجیح ہے۔"
+
+#: templates/base.html:184
+msgid "Quick Links"
+msgstr "فوری لنکس"
+
+#: templates/base.html:193
+msgid "Patients"
+msgstr "مریض"
+
+#: templates/base.html:196
+msgid "Book Appointment"
+msgstr "اپائنٹمنٹ بک کریں"
+
+#: templates/base.html:198
+msgid "FAQs"
+msgstr "عمومی سوالات"
+
+#: templates/base.html:199
+msgid "Privacy Policy"
+msgstr "رازداری کی پالیسی"
+
+#: templates/base.html:200
+msgid "Contact Us"
+msgstr "ہم سے رابطہ کریں"
+
+#: templates/base.html:206
+msgid "Connect With Us"
+msgstr "ہمارے ساتھ جڑیں"
+
+#: templates/base.html:215
+msgid "Emergency"
+msgstr "ایمرجنسی"
+
+#: templates/base.html:216
+msgid "Emergency Hotline:"
+msgstr "ایمرجنسی ہاٹ لائن:"
+
+#: templates/base.html:217
+msgid "Available 24/7, 365 days a year"
+msgstr "24/7، سال کے 365 دن دستیاب"
+
+#: templates/base.html:223
+msgid "Lifeline Hospital. All rights reserved."
+msgstr "لائف لائن ہسپتال۔ جملہ حقوق محفوظ ہیں۔"
+
+#: templates/base.html:224
+msgid "This website complies with HIPAA privacy regulations."
+msgstr "یہ ویب سائٹ HIPAA رازداری کے ضوابط کی تعمیل کرتی ہے۔"
+
+#: templates/base.html:231
+msgid "Install Lifeline Hospital App"
+msgstr "لائف لائن ہسپتال ایپ انسٹال کریں"
+
+#: templates/base.html:232
+msgid "Get quick access to appointments, doctors, and more."
+msgstr "اپائنٹمنٹس، ڈاکٹرز، اور مزید تک فوری رسائی حاصل کریں۔"
+
+#: templates/base.html:235
+msgid "Install"
+msgstr "انسٹال کریں"
+
+#: templates/base.html:236
+msgid "Not Now"
+msgstr "ابھی نہیں"
+
+#: templates/home.html:6
+msgid "Advanced Healthcare for All"
+msgstr "سب کے لیے جدید صحت کی دیکھ بھال"
+
+#: templates/home.html:7
+msgid "Lifeline Hospital combines cutting-edge medical technology with compassionate care to deliver the best outcomes for our patients. Our team of expert physicians and staff are committed to your health and wellbeing."
+msgstr "لائف لائن ہسپتال اپنے مریضوں کے لیے بہترین نتائج فراہم کرنے کے لیے جدید طبی ٹیکنالوجی کو ہمدردانہ دیکھ بھال کے ساتھ جوڑتا ہے۔ ہمارے ماہر معالجین اور عملے کی ٹیم آپ کی صحت اور تندرستی کے لیے پرعزم ہے۔"
+
+#: templates/home.html:11
+msgid "Book an Appointment"
+msgstr "اپائنٹمنٹ بک کریں"
+
+#: templates/home.html:14
+msgid "Find a Doctor"
+msgstr "ڈاکٹر تلاش کریں"
+
+#: templates/home.html:26
+msgid "Our Key Services"
+msgstr "ہماری اہم خدمات"
+
+#: templates/home.html:27
+msgid "Comprehensive healthcare services for you and your family"
+msgstr "آپ اور آپ کے خاندان کے لیے جامع صحت کی دیکھ بھال کی خدمات"
+
+#: templates/home.html:37
+msgid "Cardiology"
+msgstr "امراض قلب"
+
+#: templates/home.html:38
+msgid "State-of-the-art cardiac care with advanced diagnostics and treatment options for heart conditions."
+msgstr "دل کی حالتوں کے لیے جدید تشخیص اور علاج کے اختیارات کے ساتھ جدید قلبی دیکھ بھال۔"
+
+#: templates/home.html:39 templates/home.html:51 templates/home.html:63
+msgid "Learn More"
+msgstr "مزید جانیں"
+
+#: templates/home.html:49
+msgid "Neurology"
+msgstr "نیورولوجی"
+
+#: templates/home.html:50
+msgid "Specialized care for neurological disorders with cutting-edge technology and expert neurologists."
+msgstr "جدید ٹیکنالوجی اور ماہر نیورولوجسٹس کے ساتھ اعصابی عوارض کے لیے خصوصی دیکھ بھال۔"
+
+#: templates/home.html:61
+msgid "Preventive Medicine"
+msgstr "حفاظتی دوا"
+
+#: templates/home.html:62
+msgid "Comprehensive health check-ups and preventive care to keep you healthy and detect issues early."
+msgstr "آپ کو صحت مند رکھنے اور مسائل کا جلد پتہ لگانے کے لیے جامع صحت چیک اپ اور حفاظتی دیکھ بھال۔"
+
+#: templates/home.html:70
+msgid "View All Services"
+msgstr "تمام خدمات دیکھیں"
+
+#: templates/home.html:80
+msgid "Meet Our Specialists"
+msgstr "ہمارے ماہرین سے ملیں"
+
+#: templates/home.html:81
+msgid "Experienced doctors committed to providing the best care"
+msgstr "بہترین دیکھ بھال فراہم کرنے کے لیے پرعزم تجربہ کار ڈاکٹرز"
+
+#: templates/home.html:89
+msgid "Dr. Rajiv Sharma"
+msgstr "ڈاکٹر راجیو شرما"
+
+#: templates/home.html:91 templates/home.html:102 templates/home.html:113 templates/home.html:124 templates/home.html:169
+msgid "View Profile"
+msgstr "پروفائل دیکھیں"
+
+#: templates/home.html:100
+msgid "Dr. Priya Patel"
+msgstr "ڈاکٹر پریا پٹیل"
+
+#: templates/home.html:111
+msgid "Dr. Ahmed Khan"
+msgstr "ڈاکٹر احمد خان"
+
+#: templates/home.html:122
+msgid "Dr. Sarah Johnson"
+msgstr "ڈاکٹر سارہ جانسن"
+
+#: templates/home.html:131
+msgid "View All Doctors"
+msgstr "تمام ڈاکٹرز دیکھیں"
+
+#: templates/home.html:141
+msgid "State-of-the-Art Facilities"
+msgstr "جدید سہولیات"
+
+#: templates/home.html:142
+msgid "Our hospital is equipped with the latest medical technology to provide comprehensive care under one roof."
+msgstr "ہمارا ہسپتال ایک چھت کے نیچے جامع دیکھ بھال فراہم کرنے کے لیے جدید ترین طبی ٹیکنالوجی سے لیس ہے۔"
+
+#: templates/home.html:144
+msgid "Advanced Diagnostic Imaging Center"
+msgstr "جدید تشخیصی امیجنگ سینٹر"
+
+#: templates/home.html:145
+msgid "Modern Surgical Suites"
+msgstr "جدید سرجیکل سوٹس"
+
+#: templates/home.html:146
+msgid "Intensive Care Units"
+msgstr "انتہائی دیکھ بھال کی یونٹس"
+
+#: templates/home.html:147
+msgid "24/7 Emergency Department"
+msgstr "24/7 ایمرجنسی ڈیپارٹمنٹ"
+
+#: templates/home.html:148
+msgid "Rehabilitation Center"
+msgstr "بحالی مرکز"
+
+#: templates/home.html:151
+msgid "Explore Our Facilities"
+msgstr "ہماری سہولیات دریافت کریں"
+
+#: templates/home.html:165
+msgid "Patient Testimonials"
+msgstr "مریضوں کی گواہیاں"
+
+#: templates/home.html:166
+msgid "What our patients say about us"
+msgstr "ہمارے مریض ہمارے بارے میں کیا کہتے ہیں"
+
+#: templates/home.html:177
+msgid "The doctors and staff at Lifeline Hospital provided exceptional care during my heart surgery. Their expertise and compassion made a difficult time much easier."
+msgstr "لائف لائن ہسپتال کے ڈاکٹروں اور عملے نے میری دل کی سرجری کے دوران غیر معمولی دیکھ بھال فراہم کی۔ ان کی مہارت اور ہمدردی نے ایک مشکل وقت کو بہت آسان بنا دیا۔"
+
+#: templates/home.html:178
+msgid "- Anita Desai"
+msgstr "- انیتا دیسائی"
+
+#: templates/home.html:179
+msgid "Cardiac Patient"
+msgstr "قلبی مریض"
+
+#: templates/home.html:189
+msgid "The pediatric team was amazing with my son. They made him feel comfortable and explained everything in a way he could understand. Truly dedicated professionals."
+msgstr "بچوں کی ٹیم میرے بیٹے کے ساتھ حیرت انگیز تھی۔ انہوں نے اسے آرام دہ محسوس کروایا اور ہر چیز اس طرح سے سمجھائی جسے وہ سمجھ سکتا تھا۔ واقعی وقف شدہ پیشہ ور افراد۔"
+
+#: templates/home.html:190
+msgid "- Rahul Verma"
+msgstr "- راہل ورما"
+
+#: templates/home.html:191
+msgid "Parent"
+msgstr "والدین"
+
+#: templates/home.html:202
+msgid "I was impressed by how quickly I was able to schedule an appointment and the efficiency of the entire process. The hospital is clean, modern, and well-organized."
+msgstr "میں اس بات سے متاثر تھا کہ میں کتنی جلدی اپائنٹمنٹ شیڈول کر سکا اور پوری کارروائی کی کارکردگی۔ ہسپتال صاف، جدید اور اچھی طرح سے منظم ہے۔"
+
+#: templates/home.html:203
+msgid "- Mohammed Ali"
+msgstr "- محمد علی"
+
+#: templates/home.html:204
+msgid "Outpatient"
+msgstr "آؤٹ پیشنٹ"
+
+#: templates/home.html:213
+msgid "Ready to schedule your appointment?"
+msgstr "اپنی اپائنٹمنٹ شیڈول کرنے کے لیے تیار ہیں؟"
+
+#: templates/home.html:214
+msgid "Book online or call us today to speak with our friendly staff."
+msgstr "ہمارے دوستانہ عملے سے بات کرنے کے لیے آج ہی آن لائن بک کریں یا ہمیں کال کریں۔"
+
+#: templates/home.html:218
+msgid "Book Online"
+msgstr "آن لائن بک کریں"
+
+#: templates/home.html:221
+msgid "Call Now"
+msgstr "ابھی کال کریں"
+
+#: templates/appointments/book.html
+msgid "All fields marked with an asterisk (*) are required."
+msgstr "ستارے (*) کے نشان والے تمام فیلڈز مطلوب ہیں۔"
+
+#: templates/appointments/book.html
+msgid "You need to be logged in to book an appointment."
+msgstr "اپائنٹمنٹ بک کرنے کے لیے آپ کو لاگ ان ہونا ضروری ہے۔"
+
+#: templates/appointments/book.html
+msgid "Sign in here"
+msgstr "یہاں سائن ان کریں"
+
+#: templates/appointments/book.html
+msgid "Please select a date from today onwards."
+msgstr "براہ کرم آج سے تاریخ منتخب کریں۔"
+
+#: templates/appointments/book.html
+msgid "Select your preferred time slot."
+msgstr "اپنا پسندیدہ وقت سلاٹ منتخب کریں۔"
+
+#: templates/appointments/book.html
+msgid "Please briefly describe your symptoms or reason for the visit."
+msgstr "براہ کرم اپنی علامات یا ملاقات کی وجہ مختصراً بیان کریں۔"
+
+#: templates/appointments/book.html
+msgid "Your health information is protected by HIPAA privacy regulations."
+msgstr "آپ کی صحت کی معلومات HIPAA رازداری کے ضوابط کے ذریعے محفوظ ہیں۔"
+
+#: templates/appointments/book.html
+msgid "If you need to cancel or reschedule, please do so at least 24 hours before your appointment."
+msgstr "اگر آپ کو منسوخ یا دوبارہ شیڈول کرنے کی ضرورت ہے، تو براہ کرم اپنی اپائنٹمنٹ سے کم از کم 24 گھنٹے پہلے ایسا کریں۔"
+
+#: templates/contact.html
+msgid "Thank you for contacting us! We will get back to you shortly."
+msgstr "ہم سے رابطہ کرنے کا شکریہ! ہم جلد ہی آپ سے رابطہ کریں گے۔"
+
+#: templates/facilities.html
+msgid "World-Class Healthcare Infrastructure"
+msgstr "عالمی درجے کی صحت کی دیکھ بھال کی بنیادی ڈھانچہ"
+
+#: templates/facilities.html
+msgid "Lifeline Hospital is equipped with cutting-edge medical technology and modern facilities spanning over 500,000 square feet. Our hospital is designed to provide a healing environment that combines comfort, safety, and advanced medical care."
+msgstr "لائف لائن ہسپتال 500,000 مربع فٹ سے زیادہ میں پھیلی جدید طبی ٹیکنالوجی اور جدید سہولیات سے لیس ہے۔ ہمارا ہسپتال ایک شفا بخش ماحول فراہم کرنے کے لیے ڈیزائن کیا گیا ہے جو آرام، حفاظت اور جدید طبی دیکھ بھال کو یکجا کرتا ہے۔"
+
+#: templates/facilities.html
+msgid "Our facility is fully accessible to patients with disabilities, featuring wheelchair ramps, elevators, and specially designed patient rooms to ensure comfortable care for all."
+msgstr "ہماری سہولت معذور مریضوں کے لیے مکمل طور پر قابل رسائی ہے، جس میں وہیل چیئر ریمپ، لفٹ، اور خاص طور پر ڈیزائن کردہ مریضوں کے کمرے ہیں تاکہ سب کے لیے آرام دہ دیکھ بھال کو یقینی بنایا جا سکے۔"
+
+#: templates/facilities.html
+msgid "View Hospital Map"
+msgstr "ہسپتال کا نقشہ دیکھیں"
+
+#: templates/facilities.html
+msgid "Visit Information"
+msgstr "معلومات ملاحظہ کریں"
+
+#: templates/facilities.html
+msgid "Key Facilities"
+msgstr "اہم سہولیات"
+
+#: templates/facilities.html
+msgid "Advanced Cardiac Center"
+msgstr "جدید قلبی سینٹر"
+
+#: templates/facilities.html
+msgid "Our state-of-the-art cardiac center is equipped with the latest technology for comprehensive heart care, including cardiac catheterization labs, electrophysiology studies, and advanced cardiac imaging."
+msgstr "ہمارا جدید قلبی سینٹر جامع دل کی دیکھ بھال کے لیے جدید ترین ٹیکنالوجی سے لیس ہے، بشمول قلبی کیتھیٹرائزیشن لیبز، الیکٹروفیزیولوجی اسٹڈیز، اور جدید قلبی امیجنگ۔"
+
+#: templates/facilities.html
+msgid "Need More Information?"
+msgstr "مزید معلومات کی ضرورت ہے؟"
+
+#: templates/facilities.html
+msgid "Contact our patient services department for detailed information about our facilities, visiting hours, or to schedule a tour of our hospital."
+msgstr "ہماری سہولیات، ملاقات کے اوقات کے بارے میں تفصیلی معلومات کے لیے یا ہمارے ہسپتال کا دورہ شیڈول کرنے کے لیے ہمارے مریض خدمات کے شعبے سے رابطہ کریں۔"
+
+#: templates/privacy.html
+msgid "Our Commitment to Your Privacy"
+msgstr "آپ کی رازداری کے لیے ہماری عہد"
+
+#: templates/privacy.html
+msgid "At Lifeline Hospital, we are committed to protecting the privacy and security of your personal health information. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information in accordance with the Health Insurance Portability and Accountability Act (HIPAA) and other applicable laws."
+msgstr "لائف لائن ہسپتال میں، ہم آپ کی ذاتی صحت کی معلومات کی رازداری اور سیکیورٹی کی حفاظت کے لیے پرعزم ہیں۔ یہ رازداری پالیسی اس بات کا خاکہ پیش کرتی ہے کہ ہم آپ کی معلومات کو ہیلتھ انشورنس پورٹیبیلیٹی اینڈ اکاؤنٹیبیلیٹی ایکٹ (HIPAA) اور دیگر قابل اطلاق قوانین کے مطابق کیسے جمع، استعمال، افشا اور محفوظ کرتے ہیں۔"
+
+#: templates/privacy.html
+msgid "We understand the sensitive nature of health information and take our responsibility as custodians of this data very seriously. Our staff receives regular training on privacy practices, and we employ robust technical and administrative safeguards to protect your information."
+msgstr "ہم صحت کی معلومات کی حساس نوعیت کو سمجھتے ہیں اور اس ڈیٹا کے کسٹوڈین کے طور پر اپنی ذمہ داری کو بہت سنجیدگی سے لیتے ہیں۔ ہمارے عملے کو رازداری کے طریقوں پر باقاعدہ تربیت ملتی ہے، اور ہم آپ کی معلومات کی حفاظت کے لیے مضبوط تکنیکی اور انتظامی حفاظتی اقدامات استعمال کرتے ہیں۔"
+
+#: templates/privacy.html
+msgid "Last Updated"
+msgstr "آخری اپ ڈیٹ"
+
+#: templates/privacy.html
+msgid "This Privacy Policy was last updated on January 15, 2023. We may update this policy periodically to reflect changes in our practices or legal requirements."
+msgstr "اس رازداری پالیسی کو آخری بار 15 جنوری، 2023 کو اپ ڈیٹ کیا گیا تھا۔ ہم ہماری مشقوں یا قانونی تقاضوں میں تبدیلیوں کی عکاسی کے لیے اس پالیسی کو وقتاً فوقتاً اپ ڈیٹ کر سکتے ہیں۔"
+
+#: translations/ur/LC_MESSAGES/messages.po
+msgid "HIPAA Summary"
+msgstr "HIPAA خلاصہ"
+
+#: translations/ur/LC_MESSAGES/messages.po
+msgid "The Health Insurance Portability and Accountability Act (HIPAA) is a federal law that provides important protections for your health information. Key aspects include:"
+msgstr "ہیلتھ انشورنس پورٹیبیلیٹی اینڈ اکاؤنٹیبیلیٹی ایکٹ (HIPAA) ایک وفاقی قانون ہے جو آپ کی صحت کی معلومات کے لیے اہم تحفظات فراہم کرتا ہے۔ اہم پہلوؤں میں شامل ہیں:"

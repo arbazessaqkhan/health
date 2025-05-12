@@ -1,0 +1,83 @@
+<footer class="footer mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Hospital Info -->
+      <div class="col-lg-4 mb-4">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="{{ _('Lifeline Hospital') }}" class="mb-3" width="150">
+        <p>{{ _('Lifeline Hospital provides comprehensive healthcare services with a focus on patient comfort, cutting-edge technology, and exceptional medical expertise.') }}</p>
+        <div class="d-flex mt-3">
+          <a href="#" class="me-3 text-white" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="me-3 text-white" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="me-3 text-white" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="me-3 text-white" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-4 mb-4">
+        <h5>{{ _('Quick Links') }}</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{{ url_for('main.about') }}">{{ _('About Us') }}</a></li>
+          <li class="mb-2"><a href="{{ url_for('doctors.index') }}">{{ _('Our Doctors') }}</a></li>
+          <li class="mb-2"><a href="{{ url_for('facilities.index') }}">{{ _('Facilities') }}</a></li>
+          <li class="mb-2"><a href="{{ url_for('appointments.book') }}">{{ _('Book Appointment') }}</a></li>
+          <li class="mb-2"><a href="{{ url_for('main.faq') }}">{{ _('FAQs') }}</a></li>
+          <li class="mb-2"><a href="{{ url_for('main.contact') }}">{{ _('Contact Us') }}</a></li>
+        </ul>
+      </div>
+      
+      <!-- Services -->
+      <div class="col-lg-2 col-md-4 mb-4">
+        <h5>{{ _('Services') }}</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#">{{ _('Emergency Care') }}</a></li>
+          <li class="mb-2"><a href="#">{{ _('Cardiology') }}</a></li>
+          <li class="mb-2"><a href="#">{{ _('Neurology') }}</a></li>
+          <li class="mb-2"><a href="#">{{ _('Pediatrics') }}</a></li>
+          <li class="mb-2"><a href="#">{{ _('Orthopedics') }}</a></li>
+          <li class="mb-2"><a href="#">{{ _('Laboratory') }}</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="col-lg-4 col-md-4 mb-4">
+        <h5>{{ _('Contact Information') }}</h5>
+        <ul class="list-unstyled">
+          <li class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i> 
+            {{ _('123 Healthcare Drive, Medical District, City, State ZIP') }}
+          </li>
+          <li class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i> 
+            <a href="tel:+15555LIFELINE">+1-555-LIFELINE</a>
+          </li>
+          <li class="mb-3">
+            <i class="fas fa-envelope me-2"></i> 
+            <a href="mailto:contact@lifelinehospital.example">contact@lifelinehospital.example</a>
+          </li>
+          <li class="mb-3">
+            <i class="fas fa-clock me-2"></i> 
+            {{ _('Emergency: 24/7') }}<br>
+            <span class="ms-4">{{ _('Outpatient: Mon-Sat 8:00 AM - 8:00 PM') }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom text-center">
+      <div class="row">
+        <div class="col-md-6 text-md-start">
+          <p>&copy; {% now 'Y' %} {{ _('Lifeline Hospital. All rights reserved.') }}</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>
+            <a href="{{ url_for('main.privacy') }}">{{ _('Privacy Policy') }}</a> | 
+            <a href="#">{{ _('Terms of Service') }}</a> | 
+            <a href="#">{{ _('HIPAA Notice') }}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

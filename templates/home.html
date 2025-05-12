@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container text-center">
+        <h1>{{ _('Advanced Healthcare for All') }}</h1>
+        <p>{{ _('Lifeline Hospital combines cutting-edge medical technology with compassionate care to deliver the best outcomes for our patients. Our team of expert physicians and staff are committed to your health and wellbeing.') }}</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{{ url_for('appointments.book') }}" class="btn btn-primary">
+                <i class="fas fa-calendar-check me-2"></i>{{ _('Book an Appointment') }}
+            </a>
+            <a href="{{ url_for('doctors.index') }}" class="btn btn-outline-light">
+                <i class="fas fa-user-md me-2"></i>{{ _('Find a Doctor') }}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Key Services Section -->
+    <section class="mb-5">
+        <div class="row text-center mb-4">
+            <div class="col-12">
+                <h2>{{ _('Our Key Services') }}</h2>
+                <p class="lead">{{ _('Comprehensive healthcare services for you and your family') }}</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="card-title h5">{{ _('Cardiology') }}</h3>
+                        <p class="card-text">{{ _('State-of-the-art cardiac care with advanced diagnostics and treatment options for heart conditions.') }}</p>
+                        <a href="{{ url_for('services.index') }}#cardiology" class="btn btn-sm btn-outline-primary">{{ _('Learn More') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="card-title h5">{{ _('Neurology') }}</h3>
+                        <p class="card-text">{{ _('Specialized care for neurological disorders with cutting-edge technology and expert neurologists.') }}</p>
+                        <a href="{{ url_for('services.index') }}#neurology" class="btn btn-sm btn-outline-primary">{{ _('Learn More') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3 class="card-title h5">{{ _('Preventive Medicine') }}</h3>
+                        <p class="card-text">{{ _('Comprehensive health check-ups and preventive care to keep you healthy and detect issues early.') }}</p>
+                        <a href="{{ url_for('services.index') }}#preventive" class="btn btn-sm btn-outline-primary">{{ _('Learn More') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('services.index') }}" class="btn btn-primary">
+                {{ _('View All Services') }} <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Featured Doctors Section -->
+    <section class="mb-5">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2>{{ _('Meet Our Specialists') }}</h2>
+                <p class="lead">{{ _('Experienced doctors committed to providing the best care') }}</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card doctor-card h-100">
+                    <img src="https://pixabay.com/get/g946f1d9a62a40d76d9255f07058c1d104aa315eb269e3bda3eaff6d355ac150c31e29706dccff565e0eccfd15bc69c43c173c362a93ec1dbfcb385d881c6b145_1280.jpg" class="card-img-top" alt="{{ _('Dr. Rajiv Sharma') }}">
+                    <div class="card-body">
+                        <h3 class="card-title h5">{{ _('Dr. Rajiv Sharma') }}</h3>
+                        <p class="doctor-specialty">{{ _('Cardiology') }}</p>
+                        <a href="{{ url_for('doctors.index') }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card doctor-card h-100">
+                    <img src="https://pixabay.com/get/gc4e3bae047686e645261454c0addc1b759a4f00b8ab54156716442a18f01c760da387f861d9ce29d9ab3ade0bc1e8a51402e598663430079ac0bd2a8fca738a1_1280.jpg" class="card-img-top" alt="{{ _('Dr. Priya Patel') }}">
+                    <div class="card-body">
+                        <h3 class="card-title h5">{{ _('Dr. Priya Patel') }}</h3>
+                        <p class="doctor-specialty">{{ _('Neurology') }}</p>
+                        <a href="{{ url_for('doctors.index') }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card doctor-card h-100">
+                    <img src="https://pixabay.com/get/g6e1ebb93703445d2d69b7f8e75df8ff8a382d035a93483515338da835f95dc8d9e80f5b410d4dd341ab0953d3de6482a407e045f6003f9658157c26358283082_1280.jpg" class="card-img-top" alt="{{ _('Dr. Ahmed Khan') }}">
+                    <div class="card-body">
+                        <h3 class="card-title h5">{{ _('Dr. Ahmed Khan') }}</h3>
+                        <p class="doctor-specialty">{{ _('Orthopedics') }}</p>
+                        <a href="{{ url_for('doctors.index') }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card doctor-card h-100">
+                    <img src="https://pixabay.com/get/gf960a43af56ad32f66635be242fd4d7e2bd5702c1aae1e6d9bc830fbe495dbfb78825ee1bd3cf788f47c7277362a1d1d5f25c04a7fb8c409ef19caff44816f87_1280.jpg" class="card-img-top" alt="{{ _('Dr. Sarah Johnson') }}">
+                    <div class="card-body">
+                        <h3 class="card-title h5">{{ _('Dr. Sarah Johnson') }}</h3>
+                        <p class="doctor-specialty">{{ _('Pediatrics') }}</p>
+                        <a href="{{ url_for('doctors.index') }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('doctors.index') }}" class="btn btn-primary">
+                {{ _('View All Doctors') }} <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Facilities Section -->
+    <section class="mb-5">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2>{{ _('State-of-the-Art Facilities') }}</h2>
+                <p>{{ _('Our hospital is equipped with the latest medical technology to provide comprehensive care under one roof.') }}</p>
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ _('Advanced Diagnostic Imaging Center') }}</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ _('Modern Surgical Suites') }}</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ _('Intensive Care Units') }}</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ _('24/7 Emergency Department') }}</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ _('Rehabilitation Center') }}</li>
+                </ul>
+                <a href="{{ url_for('home.facilities') }}" class="btn btn-outline-primary">
+                    {{ _('Explore Our Facilities') }} <i class="fas fa-hospital ms-2"></i>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <img src="https://pixabay.com/get/g67529cf59f6a75e145c7208c368cc3fa34e3f40dc8e86a1b7cc7c8e660d77fb5746dc2b9b809dbc0a3afa5ebbcd44bc3d31c0e89fc11c60c26fdd1f7ef987551_1280.jpg" alt="{{ _('Hospital facilities') }}" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="mb-5">
+        <div class="row mb-4 text-center">
+            <div class="col-12">
+                <h2>{{ _('Patient Testimonials') }}</h2>
+                <p class="lead">{{ _('What our patients say about us') }}</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text">{{ _('The doctors and staff at Lifeline Hospital provided exceptional care during my heart surgery. Their expertise and compassion made a difficult time much easier.') }}</p>
+                        <p class="card-text fw-bold mb-0">{{ _('- Anita Desai') }}</p>
+                        <small class="text-muted">{{ _('Cardiac Patient') }}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text">{{ _('The pediatric team was amazing with my son. They made him feel comfortable and explained everything in a way he could understand. Truly dedicated professionals.') }}</p>
+                        <p class="card-text fw-bold mb-0">{{ _('- Rahul Verma') }}</p>
+                        <small class="text-muted">{{ _('Parent') }}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                        </div>
+                        <p class="card-text">{{ _('I was impressed by how quickly I was able to schedule an appointment and the efficiency of the entire process. The hospital is clean, modern, and well-organized.') }}</p>
+                        <p class="card-text fw-bold mb-0">{{ _('- Mohammed Ali') }}</p>
+                        <small class="text-muted">{{ _('Outpatient') }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="mb-5 bg-light p-5 rounded-3">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <h2>{{ _('Ready to schedule your appointment?') }}</h2>
+                <p class="lead mb-0">{{ _('Book online or call us today to speak with our friendly staff.') }}</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{{ url_for('appointments.book') }}" class="btn btn-primary me-3">
+                    <i class="fas fa-calendar-check me-2"></i>{{ _('Book Online') }}
+                </a>
+                <a href="tel:+911123456789" class="btn btn-outline-primary">
+                    <i class="fas fa-phone me-2"></i>{{ _('Call Now') }}
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

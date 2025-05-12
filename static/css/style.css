@@ -1,0 +1,385 @@
+/* Lifeline Hospital Theme - Main Stylesheet */
+
+:root {
+    --primary: #2c6ba0;
+    --secondary: #6fc3df;
+    --accent: #e83e8c;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --gray: #6c757d;
+    --white: #fff;
+    --black: #000;
+    --body-bg: #f9fbfd;
+    --footer-bg: #343a40;
+    --border-color: #e3e6f0;
+    
+    /* Accessibility variables */
+    --focus-ring-color: rgba(44, 107, 160, 0.5);
+    --focus-ring-width: 0.25rem;
+}
+
+/* General Styles */
+body {
+    font-family: 'Nunito', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--dark);
+    background-color: var(--body-bg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #1d4b71;
+    text-decoration: underline;
+}
+
+/* Accessibility */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+    :root {
+        --primary: #004b87;
+        --secondary: #0076c0;
+        --border-color: #000;
+    }
+    
+    body {
+        color: #000;
+        background-color: #fff;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* Header & Navigation */
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    padding: 1rem 2rem;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.navbar-nav .nav-item .nav-link {
+    padding: 0.75rem 1rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.navbar-nav .nav-item .nav-link:hover, 
+.navbar-nav .nav-item .nav-link:focus,
+.navbar-nav .nav-item.active .nav-link {
+    color: var(--primary);
+}
+
+.language-selector .dropdown-item {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Hero Section */
+.hero {
+    background-image: linear-gradient(135deg, rgba(44, 107, 160, 0.8), rgba(111, 195, 223, 0.8));
+    color: var(--white);
+    padding: 5rem 0;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.hero .btn-primary {
+    background-color: var(--white);
+    color: var(--primary);
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.hero .btn-primary:hover {
+    background-color: var(--light);
+    transform: translateY(-3px);
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.card-title {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Doctor Cards */
+.doctor-card {
+    text-align: center;
+    height: 100%;
+}
+
+.doctor-card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.doctor-card .doctor-specialty {
+    color: var(--gray);
+    font-style: italic;
+}
+
+/* Service Section */
+.service-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--white);
+    padding: 3rem 0 1.5rem;
+    margin-top: 5rem;
+}
+
+footer h5 {
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+footer a:hover {
+    color: var(--white);
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* Forms */
+.form-control {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem var(--focus-ring-color);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #1d4b71;
+    border-color: #1d4b71;
+}
+
+/* FAQ Section */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem var(--focus-ring-color);
+    border-color: var(--primary);
+}
+
+/* Map */
+#facility-map {
+    height: 500px;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Doctor Profile */
+.doctor-profile-img {
+    max-width: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Appointments */
+.appointment-card {
+    border-left: 5px solid;
+    transition: all 0.3s ease;
+}
+
+.appointment-card:hover {
+    transform: translateX(5px);
+}
+
+.appointment-card.scheduled {
+    border-left-color: var(--primary);
+}
+
+.appointment-card.completed {
+    border-left-color: var(--success);
+}
+
+.appointment-card.cancelled {
+    border-left-color: var(--danger);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+    
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+    
+    .doctor-card .card-img-top {
+        height: 200px;
+    }
+    
+    #facility-map {
+        height: 350px;
+    }
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PWA Styles */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: none;
+    z-index: 1000;
+}
+
+.install-prompt.show {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offline-alert {
+    background-color: var(--warning);
+    color: var(--dark);
+    text-align: center;
+    padding: 0.5rem;
+    display: none;
+}
+
+.offline-alert.show {
+    display: block;
+}

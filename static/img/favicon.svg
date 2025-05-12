@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Favicon for Lifeline Hospital -->
+  
+  <!-- Hospital cross symbol -->
+  <rect x="9" y="9" width="14" height="14" rx="2" fill="#0069b4" />
+  <rect x="14" y="4" width="4" height="24" rx="2" fill="#0069b4" />
+  
+  <!-- Heartbeat line -->
+  <path d="M5 16 H9 L11 12 L14 20 L17 10 L20 16 H27" 
+        stroke="#37b89c" 
+        stroke-width="2" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+</svg>

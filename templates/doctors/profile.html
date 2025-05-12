@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home.index') }}">{{ _('Home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('doctors.index') }}">{{ _('Doctors') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dr. {{ doctor.first_name }} {{ doctor.last_name }}</li>
+        </ol>
+    </nav>
+    
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    {% if doctor.photo_url %}
+                        <img src="{{ doctor.photo_url }}" alt="Dr. {{ doctor.first_name }} {{ doctor.last_name }}" class="doctor-profile-img img-fluid mb-3">
+                    {% else %}
+                        <img src="https://pixabay.com/get/gc4e3bae047686e645261454c0addc1b759a4f00b8ab54156716442a18f01c760da387f861d9ce29d9ab3ade0bc1e8a51402e598663430079ac0bd2a8fca738a1_1280.jpg" alt="Dr. {{ doctor.first_name }} {{ doctor.last_name }}" class="doctor-profile-img img-fluid mb-3">
+                    {% endif %}
+                    
+                    <a href="{{ url_for('appointments.book', doctor_id=doctor.id) }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-check me-2"></i>{{ _('Book Appointment') }}
+                    </a>
+                </div>
+                
+                <div class="col-md-8">
+                    <h1>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h1>
+                    <p class="lead text-primary">{{ doctor.specialty }}</p>
+                    
+                    <div class="mb-4">
+                        <h5>{{ _('Qualifications') }}</h5>
+                        <p>{{ doctor.qualifications }}</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>{{ _('Experience') }}</h5>
+                        <p>
+                            {% if doctor.years_experience %}
+                                {{ doctor.years_experience }} {{ _('years of clinical experience') }}
+                            {% else %}
+                                {{ _('Senior medical professional with extensive experience') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    {% if doctor.languages_spoken %}
+                    <div class="mb-4">
+                        <h5>{{ _('Languages Spoken') }}</h5>
+                        <p>{{ doctor.languages_spoken }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if departments %}
+                    <div class="mb-4">
+                        <h5>{{ _('Departments') }}</h5>
+                        <div>
+                            {% for department in departments %}
+                                <span class="badge bg-light text-dark p-2 me-2 mb-2">{{ department.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if doctor.consulting_hours %}
+                    <div class="mb-4">
+                        <h5>{{ _('Consulting Hours') }}</h5>
+                        <p>{{ doctor.consulting_hours }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if doctor.bio %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <h3>{{ _('About Dr.') }} {{ doctor.first_name }} {{ doctor.last_name }}</h3>
+            <p>{{ doctor.bio }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <h3>{{ _('About Dr.') }} {{ doctor.first_name }} {{ doctor.last_name }}</h3>
+            <p>{{ _('Dr.') }} {{ doctor.first_name }} {{ doctor.last_name }} {{ _('is a highly skilled specialist in') }} {{ doctor.specialty }} {{ _('at Lifeline Hospital. With an impressive background in medical research and patient care, the doctor is committed to providing personalized treatment to each patient. Using the latest advances in medical technology, Dr.') }} {{ doctor.last_name }} {{ _('strives to deliver optimal healthcare outcomes and improve quality of life for all patients.') }}</p>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Appointment Section -->
+    <div class="card bg-light">
+        <div class="card-body text-center p-5">
+            <h3 class="mb-3">{{ _('Schedule an Appointment with Dr.') }} {{ doctor.last_name }}</h3>
+            <p>{{ _('Choose a convenient time slot for your consultation with Dr.') }} {{ doctor.first_name }} {{ doctor.last_name }}</p>
+            <a href="{{ url_for('appointments.book', doctor_id=doctor.id) }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-calendar-check me-2"></i>{{ _('Book Appointment Now') }}
+            </a>
+            <div class="mt-3">
+                <small>{{ _('or call us at') }} <a href="tel:+911123456789">+91 11 2345 6789</a></small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Similar Doctors (if any) -->
+    <h3 class="mt-5 mb-4">{{ _('Other Specialists in') }} {{ doctor.specialty }}</h3>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card doctor-card h-100">
+                <img src="https://pixabay.com/get/g6e1ebb93703445d2d69b7f8e75df8ff8a382d035a93483515338da835f95dc8d9e80f5b410d4dd341ab0953d3de6482a407e045f6003f9658157c26358283082_1280.jpg" class="card-img-top" alt="{{ _('Doctor') }}">
+                <div class="card-body">
+                    <h4 class="card-title h5">{{ _('Dr. Rajesh Kumar') }}</h4>
+                    <p class="doctor-specialty">{{ doctor.specialty }}</p>
+                    <a href="{{ url_for('doctors.index', specialty=doctor.specialty) }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card doctor-card h-100">
+                <img src="https://pixabay.com/get/gc4e3bae047686e645261454c0addc1b759a4f00b8ab54156716442a18f01c760da387f861d9ce29d9ab3ade0bc1e8a51402e598663430079ac0bd2a8fca738a1_1280.jpg" class="card-img-top" alt="{{ _('Doctor') }}">
+                <div class="card-body">
+                    <h4 class="card-title h5">{{ _('Dr. Sunita Sharma') }}</h4>
+                    <p class="doctor-specialty">{{ doctor.specialty }}</p>
+                    <a href="{{ url_for('doctors.index', specialty=doctor.specialty) }}" class="btn btn-sm btn-outline-primary">{{ _('View Profile') }}</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h4>{{ _('Find More Specialists') }}</h4>
+                    <p>{{ _('Looking for more specialists in this field or other healthcare professionals?') }}</p>
+                    <div>
+                        <a href="{{ url_for('doctors.index', specialty=doctor.specialty) }}" class="btn btn-outline-primary me-2">
+                            {{ _('View All') }} {{ doctor.specialty }} {{ _('Doctors') }}
+                        </a>
+                        <a href="{{ url_for('doctors.index') }}" class="btn btn-outline-secondary">
+                            {{ _('Browse All Doctors') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

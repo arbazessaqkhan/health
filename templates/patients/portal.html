@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Welcome Banner -->
+    <div class="card mb-4 bg-primary text-white">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="h3">{{ _('Welcome, ') }} {{ current_user.first_name }}!</h1>
+                    <p class="mb-md-0">{{ _('Manage your appointments and health information securely.') }}</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="{{ url_for('appointments.book') }}" class="btn btn-light">
+                        <i class="fas fa-calendar-plus me-2"></i>{{ _('New Appointment') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Information -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('Patient Information') }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="patient-avatar me-3 bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i class="fas fa-user-circle fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-0">{{ current_user.first_name }} {{ current_user.last_name }}</h3>
+                            <p class="text-muted mb-0 small">{{ _('Patient ID: ') }}{{ current_user.id }}</p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">{{ _('Email') }}</dt>
+                        <dd class="col-sm-8">{{ current_user.email }}</dd>
+                        
+                        <dt class="col-sm-4">{{ _('Phone') }}</dt>
+                        <dd class="col-sm-8">{{ current_user.phone or _('Not provided') }}</dd>
+                        
+                        <dt class="col-sm-4">{{ _('Address') }}</dt>
+                        <dd class="col-sm-8">{{ current_user.address or _('Not provided') }}</dd>
+                        
+                        <dt class="col-sm-4">{{ _('DOB') }}</dt>
+                        <dd class="col-sm-8">{{ current_user.date_of_birth.strftime('%d-%m-%Y') if current_user.date_of_birth else _('Not provided') }}</dd>
+                    </dl>
+                </div>
+                <div class="card-footer bg-light">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-edit me-2"></i>{{ _('Update Information') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="h5 mb-0">{{ _('Upcoming Appointments') }}</h2>
+                    <span class="badge bg-primary">{{ upcoming_appointments|length }}</span>
+                </div>
+                <div class="card-body p-0">
+                    {% if upcoming_appointments %}
+                        <div class="list-group list-group-flush">
+                            {% for appointment in upcoming_appointments %}
+                                <div class="list-group-item appointment-card scheduled p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-8">
+                                            <h3 class="h6 mb-0">{{ _('Appointment with') }} Dr. {{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</h3>
+                                            <p class="mb-1 text-muted">{{ appointment.doctor.specialty }}</p>
+                                            <div class="d-flex align-items-center mt-2">
+                                                <div class="me-3">
+                                                    <i class="fas fa-calendar-day me-1 text-primary"></i> {{ appointment.date.strftime('%d-%m-%Y') }}
+                                                </div>
+                                                <div class="me-3">
+                                                    <i class="fas fa-clock me-1 text-primary"></i> {{ appointment.time.strftime('%H:%M') }}
+                                                </div>
+                                                <div>
+                                                    <i class="fas {% if appointment.appointment_type == 'in-person' %}fa-hospital{% else %}fa-video{% endif %} me-1 text-primary"></i> 
+                                                    {{ _('In-person') if appointment.appointment_type == 'in-person' else _('Telemedicine') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                            {% if appointment.appointment_type == 'telemedicine' %}
+                                                <a href="#" class="btn btn-sm btn-success me-2">
+                                                    <i class="fas fa-video me-1"></i>{{ _('Join') }}
+                                                </a>
+                                            {% endif %}
+                                            <form method="POST" action="{{ url_for('patients.cancel_appointment', appointment_id=appointment.id) }}" class="d-inline">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger cancel-appointment-btn">
+                                                    <i class="fas fa-times-circle me-1"></i>{{ _('Cancel') }}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center p-4">
+                            <i class="fas fa-calendar-alt fa-3x text-muted mb-3"></i>
+                            <p>{{ _('You have no upcoming appointments.') }}</p>
+                            <a href="{{ url_for('appointments.book') }}" class="btn btn-primary">
+                                <i class="fas fa-calendar-plus me-2"></i>{{ _('Schedule an Appointment') }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Past Appointments -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="h5 mb-0">{{ _('Past Appointments') }}</h2>
+            <span class="badge bg-secondary">{{ past_appointments|length }}</span>
+        </div>
+        <div class="card-body p-0">
+            {% if past_appointments %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>{{ _('Date') }}</th>
+                                <th>{{ _('Doctor') }}</th>
+                                <th>{{ _('Department') }}</th>
+                                <th>{{ _('Type') }}</th>
+                                <th>{{ _('Status') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appointment in past_appointments %}
+                                <tr>
+                                    <td>
+                                        <div>{{ appointment.date.strftime('%d-%m-%Y') }}</div>
+                                        <div class="small text-muted">{{ appointment.time.strftime('%H:%M') }}</div>
+                                    </td>
+                                    <td>Dr. {{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</td>
+                                    <td>{{ appointment.doctor.specialty }}</td>
+                                    <td>
+                                        <span class="badge {% if appointment.appointment_type == 'in-person' %}bg-info{% else %}bg-primary{% endif %}">
+                                            {% if appointment.appointment_type == 'in-person' %}
+                                                <i class="fas fa-hospital me-1"></i>{{ _('In-person') }}
+                                            {% else %}
+                                                <i class="fas fa-video me-1"></i>{{ _('Telemedicine') }}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if appointment.status == 'completed' %}bg-success{% elif appointment.status == 'cancelled' %}bg-danger{% elif appointment.status == 'no-show' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                            {{ _(appointment.status|capitalize) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center p-4">
+                    <p class="text-muted">{{ _('No past appointment records found.') }}</p>
+                </div>
+            {% endif %}
+        </div>
+        {% if past_appointments %}
+            <div class="card-footer bg-light text-center">
+                <a href="#" class="btn btn-sm btn-outline-secondary">
+                    {{ _('View All Medical Records') }} <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Health Records & Quick Links -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('Health Records') }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>{{ _('Access your medical records, test results, and prescriptions.') }}</p>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-notes-medical text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-1">{{ _('Medical History') }}</h5>
+                                <p class="mb-0 small">{{ _('View your complete medical history') }}</p>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-flask text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-1">{{ _('Lab Results') }}</h5>
+                                <p class="mb-0 small">{{ _('Access your laboratory test results') }}</p>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-prescription text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-1">{{ _('Prescriptions') }}</h5>
+                                <p class="mb-0 small">{{ _('View and download your prescriptions') }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('Quick Links') }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <a href="{{ url_for('appointments.book') }}" class="card h-100 text-center p-3 text-decoration-none">
+                                <div class="text-primary mb-2">
+                                    <i class="fas fa-calendar-plus fa-2x"></i>
+                                </div>
+                                <h5 class="card-title">{{ _('Book Appointment') }}</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{ url_for('doctors.index') }}" class="card h-100 text-center p-3 text-decoration-none">
+                                <div class="text-primary mb-2">
+                                    <i class="fas fa-user-md fa-2x"></i>
+                                </div>
+                                <h5 class="card-title">{{ _('Find Doctor') }}</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="card h-100 text-center p-3 text-decoration-none">
+                                <div class="text-primary mb-2">
+                                    <i class="fas fa-comments fa-2x"></i>
+                                </div>
+                                <h5 class="card-title">{{ _('Messages') }}</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{ url_for('contact.index') }}" class="card h-100 text-center p-3 text-decoration-none">
+                                <div class="text-primary mb-2">
+                                    <i class="fas fa-headset fa-2x"></i>
+                                </div>
+                                <h5 class="card-title">{{ _('Help & Support') }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- HIPAA Compliance Notice -->
+    <div class="alert alert-info" role="alert">
+        <div class="d-flex">
+            <div class="me-3">
+                <i class="fas fa-shield-alt fa-2x"></i>
+            </div>
+            <div>
+                <h4 class="alert-heading h5">{{ _('HIPAA Compliance Notice') }}</h4>
+                <p class="mb-0">{{ _('This portal is secured in accordance with HIPAA privacy regulations. Your medical information is protected with industry-standard encryption and security measures.') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
